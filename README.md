@@ -1,4 +1,4 @@
-# marvel-character-search
+# movie-drink-roulette
 
 Omar Code 
 2021
