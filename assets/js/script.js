@@ -8,6 +8,11 @@ $(document).ready(function(){
     var cocktailResultDiv = $('#cocktail-container');
     var genreName;
     var genreId;
+    var movieResponse;
+    var movieIndex = 0;
+    var movieTitle;
+    var movieDesc;
+    var moviePoster;
     var cocktailType;
 
 
@@ -25,25 +30,75 @@ $(document).ready(function(){
             .then(function(data) {
                 console.log(data);
 
+                movieResponse = data;
+                console.log(movieResponse);
+
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
                 console.log(data.results[0].overview)  //movie summary
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
 
-                var movieTitle = $('<h2>').text(data.results[0].title);
-                var movieDesc = $('<p>').text(data.results[0].overview);
-                var moviePoster = $('<img>').attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
-                movieResultDiv.append(movieTitle);
-                movieResultDiv.append(movieDesc);
-                movieResultDiv.append(moviePoster);
+                displayMovieDetails(movieResponse);
             })
     }
+    getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);  //remove once HTML is set-up with inputs/button
 
-    getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);
+    //Displays movie details for initial search
+    function displayMovieDetails(data) {
+        movieTitle = $('<h2>').text(data.results[0].title);
+        movieDesc = $('<p>').text(data.results[0].overview);
+        moviePoster = $('<img>').attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
+        var nextBtn = $('<button>').text('Next');
+        var prevBtn = $('<button>').text('Previous');
+        nextBtn.attr('id','next-btn');
+        prevBtn.attr('id','prev-btn');
+        movieResultDiv.append(movieTitle);
+        movieResultDiv.append(movieDesc);
+        movieResultDiv.append(moviePoster);
+        movieResultDiv.append(nextBtn);
+        movieResultDiv.append(prevBtn);
+    }
+
+    //populates movie details when 'Next' is clicked
+    function displayNextMovie(data, index) {
+        movieTitle.text(data.results[index].title);
+        movieDesc.text(data.results[index].overview);
+        moviePoster.attr('src', "https://image.tmdb.org/t/p/w185" + data.results[index].poster_path)
+    }
+
+    //Click event on the 'Next' movie button
+    movieResultDiv.on('click', '#next-btn', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        ++movieIndex;
+        
+        if (movieIndex < 20) {
+            displayNextMovie(movieResponse,movieIndex);
+        } else {
+            alert ('Error in getting next movie');  //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
+            movieIndex=19;
+        }
+    })
+
+    //Click event on the 'Previous' movie button
+    movieResultDiv.on('click', '#prev-btn', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        --movieIndex;
+
+        if (movieIndex >= 0) {
+            displayNextMovie(movieResponse,movieIndex);
+        } else {
+            alert ('At the beginning of the list');
+            movieIndex=0;
+        }
+    })
 
 
-    //Search alcoholic cocktail API
+    //Search cocktail API
     function getCocktail(type) {
         var requestURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + type;
 
@@ -71,6 +126,7 @@ $(document).ready(function(){
     //Click event to initialize movie/cocktail search
     fetchBtn.on('click', function(event){
         event.preventDefault();
+        event.stopPropagation();
 
         genreName = genreInput.val();
         console.log(genreName);
