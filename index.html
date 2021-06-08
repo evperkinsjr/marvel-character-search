@@ -5,9 +5,158 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Movie & Drink Roulette</title>
-        <link rel="stylesheet" href="#" />
+        <!--Link to Bulma(CSS)-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+        <!--Font Awesome-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Style CSS-->
+        <link rel="stylesheet" href="style.css"/>
     </head>
     <body>
+
+        <!--Header/Navbar-->
+        <nav class="navbar is-spaced is-justify-content-space-between">
+            <!--Logo-->
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="./assets/images/video-player.png">
+                    <img src="./assets/images/wine.png">
+                </a>
+            </div>
+            <!--Title-->
+            <div class="navbar-item header-title">Movie Drink Roulette</div>
+            <!--Favorites Page Button-->
+            <div class="navbar-item favorites-button">
+                <button class="button is-large" onclick="window.location.href = './favorites.html';">
+                    <span class="icon is-medium">
+                        <i class="far fa-star"></i>
+                    </span>
+                    <span>Favorites</span>
+                </button>
+            </div>
+        </nav>  
+
+        <main>
+            <!--Row for Dropdowns and Roulette Button-->
+            <div class="container">
+                <div class="columns">
+                    <!--Dropdown for Genre-->
+                    <div class="column">
+                        <div class="select is-large">
+                            <select id="">
+                                <option disabled selected>Pick a Genre</option>
+                                <option>Action</option>
+                                <option>Horror</option>
+                                <option>Comedy</option>
+                                <option>Romance</option>
+                            </select>
+                        </div>
+                    </div>    
+                    <!--Dropdown for Drinks-->
+                    <div class="column">
+                        <div class="select is-large">
+                            <select id="">
+                                <option disabled selected>Pick a Drink Type</option>
+                                <option>Alcoholic</option>
+                                <option>Non-Alcoholic</option>
+                            </select>           
+                        </div>
+                    </div> 
+                    <!--Roulette Button-->   
+                    <div class="column is-one-fifth">
+                        <button class="button is-large" id="submit-btn">Submit</button>
+                    </div>
+                </div>    
+            </div>
+
+
+            <!--Section for generated Movie and Drink-->
+            <div class="columns">
+
+                <!--Card for Movie-->
+                <div class="column card">
+                    <!--Movie Title-->
+                    <div class="card-header">
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-film"></i>
+                                </span>
+                                <span id="">Movie Title</span>
+                              </span>
+                        </p>
+                    </div>
+                    <div class="columns">
+                        <!--Movie Poster-->
+                        <div class="card-image column">
+                            <figure class="image is-2by3" id="">
+                                <img src="./assets/images/movie-placeholder.jpg" alt="">
+                            </figure>
+                        </div>
+                        <!--Movie Info-->
+                        <div class="column">
+                            <div class="card-content">
+                                <!--Movie Description-->
+                                <div class="block">
+                                    <p class="subtitle">Movie Description</p>
+                                    <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
+                                </div>
+                                <!--Duration-->
+                                <div class="block">
+                                    <p class="subtitle">Movie Duration</p>
+                                    <p id="">120 minutes</p>
+                                </div>
+                                <!--Rating-->
+                                <div class="block">
+                                    <p class="subtitle">Rotten Tomatoes Score</p>
+                                    <p id="">8.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Card for Drink-->
+                <div class="column card">
+                    <!--Drink Name-->
+                    <div class="card-header">
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-cocktail"></i>
+                                </span>
+                                <span id="">Drink Name</span>
+                              </span>
+                        </p>
+                    </div>
+                    <div class="columns">
+                        <!--Drink Image-->
+                        <div class="card-image column">
+                            <figure class="image is-square">
+                                <img src="./assets/images/drink-placeholder.jpg" alt="">
+                            </figure>
+                        </div>
+                        <!--Drink Info-->
+                        <div class="column">
+                            <div class="card-content">
+                                <!--Ingredients-->
+                                <div class="block">
+                                    <p class="subtitle">Ingredients</p>
+                                    <p id=""> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                </div>
+                                <!--Instructions-->
+                                <div class="block">
+                                    <p class="subtitle">Instructions</p>
+                                    <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </main>
+            
+        <!--Linkt to Javascript-->
         <script src="#"></script>
     </body>
 </html>
