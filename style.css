@@ -1,0 +1,23 @@
+/* Color Pallete */
+:root {
+    --brand-color: #8C2559;
+    --light-accent: #B97B73;
+    --dark-accent: #7A7394;
+    --white: #EDE0D8;
+    --black: #1D1B23;
+}
+
+/* Style for Navbar */
+.navbar-item img {
+    min-width: 60px;
+    min-height: 70px;
+    object-fit: cover;
+}
+.header-title {
+    font-size: 4.5vw;
+    
+}
+
+.favorites-button, .home-button {
+    
+}
