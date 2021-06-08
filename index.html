@@ -15,7 +15,7 @@
     <body>
 
         <!--Header/Navbar-->
-        <nav class="navbar is-spaced">
+        <nav class="navbar is-spaced is-justify-content-space-between">
             <!--Logo-->
             <div class="navbar-brand">
                 <a class="navbar-item">
@@ -34,7 +34,8 @@
                     <span>Favorites</span>
                 </button>
             </div>
-        </nav>    
+        </nav>  
+
         <main>
             <!--Row for Dropdowns and Roulette Button-->
             <div class="container">
@@ -67,7 +68,92 @@
                     </div>
                 </div>    
             </div>
+
+
             <!--Section for generated Movie and Drink-->
+            <div class="columns">
+
+                <!--Card for Movie-->
+                <div class="column card">
+                    <!--Movie Title-->
+                    <div class="card-header">
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-film"></i>
+                                </span>
+                                <span id="">Movie Title</span>
+                              </span>
+                        </p>
+                    </div>
+                    <div class="columns">
+                        <!--Movie Poster-->
+                        <div class="card-image column">
+                            <figure class="image is-2by3">
+                                <img src="./assets/images/movie-placeholder.jpg" alt="">
+                            </figure>
+                        </div>
+                        <!--Movie Info-->
+                        <div class="column">
+                            <div class="card-content">
+                                <!--Movie Description-->
+                                <div class="block">
+                                    <p class="subtitle">Movie Description</p>
+                                    <p>Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
+                                </div>
+                                <!--Duration-->
+                                <div class="block">
+                                    <p class="subtitle">Movie Duration</p>
+                                    <p>120 minutes</p>
+                                </div>
+                                <!--Rating-->
+                                <div class="block">
+                                    <p class="subtitle">Rotten Tomatoes Score</p>
+                                    <p>8.5</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Card for Drink-->
+                <div class="column card">
+                    <!--Drink Name-->
+                    <div class="card-header">
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                  <i class="fas fa-cocktail"></i>
+                                </span>
+                                <span id="">Drink Name</span>
+                              </span>
+                        </p>
+                    </div>
+                    <div class="columns">
+                        <!--Drink Image-->
+                        <div class="card-image column">
+                            <figure class="image is-square">
+                                <img src="./assets/images/drink-placeholder.jpg" alt="">
+                            </figure>
+                        </div>
+                        <!--Drink Info-->
+                        <div class="column">
+                            <div class="card-content">
+                                <!--Ingredients-->
+                                <div class="block">
+                                    <p class="subtitle">Ingredients</p>
+                                    <p>Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                </div>
+                                <!--Instructions-->
+                                <div class="block">
+                                    <p class="subtitle">Instructions</p>
+                                    <p>Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
         </main>
             
         <!--Linkt to Javascript-->
