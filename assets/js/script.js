@@ -6,6 +6,7 @@ $(document).ready(function(){
     var fetchBtn = $('#fetch-btn');
     var movieResultDiv = $('#movie-container');
     var cocktailResultDiv = $('#cocktail-container');
+    var modalAlert = $('#modal-alert');
     var genreName;
     var genreId;
     var movieResponse;
@@ -24,8 +25,10 @@ $(document).ready(function(){
             .then(function(response) {
                 if (response.status===200) {
                     return response.json();
-                }
-                alert ('Issue with API search')  //modal?
+                } else {
+                        //Create and append modal message for display - customize depending on where we are calling the modal from
+                        modalAlert.addClass('is-active');
+                    }
             })
             .then(function(data) {
                 console.log(data);
@@ -38,6 +41,10 @@ $(document).ready(function(){
                 console.log(data.results[0].overview)  //movie summary
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
+
+                var title = data.results[0].title;
+                var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
+                console.log(titleCleaned);
 
                 displayMovieDetails(movieResponse);
             })
@@ -77,8 +84,10 @@ $(document).ready(function(){
         if (movieIndex < 20) {
             displayNextMovie(movieResponse,movieIndex);
         } else {
-            alert ('Error in getting next movie');  //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
+            //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
             movieIndex=19;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
         }
     })
 
@@ -92,9 +101,15 @@ $(document).ready(function(){
         if (movieIndex >= 0) {
             displayNextMovie(movieResponse,movieIndex);
         } else {
-            alert ('At the beginning of the list');
             movieIndex=0;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
         }
+    })
+
+    //Click event on the 'x' in the modal to close the modal
+    modalAlert.on('click', '.modal-close', function(event){
+        modalAlert.removeClass('is-active');
     })
 
 
@@ -106,8 +121,10 @@ $(document).ready(function(){
             .then(function(response) {
                 if(response.status===200) {
                     return response.json();
-                }
-                alert('Issue with API search')  //modal?
+                } else {
+                        //Create and append modal message for display - customize depending on where we are calling the modal from
+                        modalAlert.addClass('is-active');
+                    }
             })
             .then (function(data) {
                 console.log(data);
@@ -202,6 +219,4 @@ $(document).ready(function(){
         }
         return genreId;
     }
-
-
 })
