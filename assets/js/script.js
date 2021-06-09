@@ -105,20 +105,24 @@ $(document).ready(function(){
 
 
     //Search cocktail API
-    function getCocktail(type) {
-        var requestURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + type;
+    function getCocktail() {
+        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
 
-        fetch(requestURL)
+        fetch(drinkRequestUrl)
             .then(function(response) {
                 if(response.status===200) {
+                    console.log(response);
                     return response.json();
                 } else {
                         //Create and append modal message for display - customize depending on where we are calling the modal from
                         modalAlert.addClass('is-active');
                     }
             })
-            .then (function(data) {
+            .then(function(data) {
                 console.log(data);
+
+                cocktailType = data;
+                console.log(cocktailType);
 
                 console.log(data.drinks[0].strDrink);  //drink name
                 console.log(data.drinks[0].strDrinkThumb); //drink image
@@ -136,11 +140,16 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
 
-        
+        // movie
         console.log(genreInput.children("option:selected").val());
         genreId = genreInput.children("option:selected").val();
 
+        // cocktail
+        console.log(cocktailInput.children("option:selected").val());
+        cocktailType = cocktailInput.children("option:selected").val();
+
         getMovieByGenre();
+        getCocktail();
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
