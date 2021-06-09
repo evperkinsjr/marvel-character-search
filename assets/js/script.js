@@ -148,9 +148,7 @@ $(document).ready(function(){
 
         
         console.log(genreInput.children("option:selected").val());
-        // mapGenreNametoID(genreName);
-        // console.log(genreId);
-        //getMovieByGenre(genreId);
+
 
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
