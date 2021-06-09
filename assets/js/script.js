@@ -19,8 +19,8 @@ $(document).ready(function(){
 
 
     //Search the Movie DB API by genre
-    function getMovieByGenre(movieAPIKey,genre) {
-        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genre;
+    function getMovieByGenre() {
+        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genreId;
         
         fetch(requestURL)
             .then(function(response) {
@@ -47,7 +47,7 @@ $(document).ready(function(){
                 var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
                 console.log(titleCleaned);
 
-                displayMovieDetails(movieResponse);
+                // displayMovieDetails(movieResponse);
             })
     }
     // getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);  //remove once HTML is set-up with inputs/button
@@ -148,7 +148,8 @@ $(document).ready(function(){
 
         
         console.log(genreInput.children("option:selected").val());
-
+        genreId = genreInput.children("option:selected").val();
+        getMovieByGenre();
 
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
