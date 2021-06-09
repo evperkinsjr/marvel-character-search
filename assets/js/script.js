@@ -43,28 +43,22 @@ $(document).ready(function(){
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
 
-                var title = data.results[0].title;
-                var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
-                console.log(titleCleaned);
+                // var title = data.results[0].title;
+                // var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
+                // console.log(titleCleaned);
 
-                displayMovieDetails(movieResponse);
+                displayMovieDetails(movieResponse,movieIndex);
             })
     }
 
     //Displays movie details for initial search
-    function displayMovieDetails(data) {
-        movieTitleDisplay.text(data.results[0].title);
-        movieDescDisplay.text(data.results[0].overview);
-        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
+    function displayMovieDetails(data, index) {
+        movieTitleDisplay.text(data.results[index].title);
+        movieDescDisplay.text(data.results[index].overview);
+        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
     }
 
-    //populates movie details when 'Next' is clicked
-    function displayNextMovie(data, index) {
-        movieTitle.text(data.results[index].title);
-        movieDesc.text(data.results[index].overview);
-        moviePoster.attr('src', "https://image.tmdb.org/t/p/w185" + data.results[index].poster_path)
-    }
-
+    
     //Click event on the 'Next' movie button
     // movieResultDiv.on('click', '#next-btn', function(event) {
     //     event.preventDefault();
