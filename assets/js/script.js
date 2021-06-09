@@ -8,13 +8,11 @@ $(document).ready(function(){
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
     var modalAlert = $('#modal-alert');
-    var genreName;
+    var prevMovieBtn = $('#prev-movie-btn');
+    var nextMovieBtn = $('#next-movie-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
-    var movieTitle;
-    var movieDesc;
-    var moviePoster;
     var cocktailType;
 
 
@@ -59,38 +57,38 @@ $(document).ready(function(){
     }
 
     
-    //Click event on the 'Next' movie button
-    // movieResultDiv.on('click', '#next-btn', function(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
+    // Click event on the 'Next' movie button
+    nextMovieBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //     ++movieIndex;
+        ++movieIndex;
         
-    //     if (movieIndex < 20) {
-    //         displayNextMovie(movieResponse,movieIndex);
-    //     } else {
-    //         //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
-    //         movieIndex=19;
-    //         //Create and append modal message for display - customize depending on where we are calling the modal from
-    //         modalAlert.addClass('is-active');
-    //     }
-    // })
+        if (movieIndex < 20) {
+            displayMovieDetails(movieResponse,movieIndex);
+        } else {
+            //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
+            movieIndex=19;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
+        }
+    })
 
-    //Click event on the 'Previous' movie button
-    // movieResultDiv.on('click', '#prev-btn', function(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
+    // Click event on the 'Previous' movie button
+    prevMovieBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //     --movieIndex;
+        --movieIndex;
 
-    //     if (movieIndex >= 0) {
-    //         displayNextMovie(movieResponse,movieIndex);
-    //     } else {
-    //         movieIndex=0;
-    //         //Create and append modal message for display - customize depending on where we are calling the modal from
-    //         modalAlert.addClass('is-active');
-    //     }
-    // })
+        if (movieIndex >= 0) {
+            displayMovieDetails(movieResponse,movieIndex);
+        } else {
+            movieIndex=0;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
+        }
+    })
 
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(event){
