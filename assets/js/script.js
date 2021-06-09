@@ -3,9 +3,10 @@ $(document).ready(function(){
     var movieAPIKey = "afc05c23c80ea33317e0bfb98d0810ca";
     var genreInput = $('#genre-input');
     var cocktailInput = $('#cocktail-input');
-    var fetchBtn = $('#fetch-btn');
-    var movieResultDiv = $('#movie-container');
-    var cocktailResultDiv = $('#cocktail-container');
+    var submitBtn = $('#submit-btn');
+    var movieTitleDisplay = $('#movie-title');
+    var movieImageDisplay = $('#movie-image');
+    var movieDescDisplay = $('#movie-description');
     var modalAlert = $('#modal-alert');
     var genreName;
     var genreId;
@@ -49,7 +50,7 @@ $(document).ready(function(){
                 displayMovieDetails(movieResponse);
             })
     }
-    getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);  //remove once HTML is set-up with inputs/button
+    // getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);  //remove once HTML is set-up with inputs/button
 
     //Displays movie details for initial search
     function displayMovieDetails(data) {
@@ -75,37 +76,37 @@ $(document).ready(function(){
     }
 
     //Click event on the 'Next' movie button
-    movieResultDiv.on('click', '#next-btn', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    // movieResultDiv.on('click', '#next-btn', function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
 
-        ++movieIndex;
+    //     ++movieIndex;
         
-        if (movieIndex < 20) {
-            displayNextMovie(movieResponse,movieIndex);
-        } else {
-            //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
-            movieIndex=19;
-            //Create and append modal message for display - customize depending on where we are calling the modal from
-            modalAlert.addClass('is-active');
-        }
-    })
+    //     if (movieIndex < 20) {
+    //         displayNextMovie(movieResponse,movieIndex);
+    //     } else {
+    //         //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
+    //         movieIndex=19;
+    //         //Create and append modal message for display - customize depending on where we are calling the modal from
+    //         modalAlert.addClass('is-active');
+    //     }
+    // })
 
     //Click event on the 'Previous' movie button
-    movieResultDiv.on('click', '#prev-btn', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
+    // movieResultDiv.on('click', '#prev-btn', function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
 
-        --movieIndex;
+    //     --movieIndex;
 
-        if (movieIndex >= 0) {
-            displayNextMovie(movieResponse,movieIndex);
-        } else {
-            movieIndex=0;
-            //Create and append modal message for display - customize depending on where we are calling the modal from
-            modalAlert.addClass('is-active');
-        }
-    })
+    //     if (movieIndex >= 0) {
+    //         displayNextMovie(movieResponse,movieIndex);
+    //     } else {
+    //         movieIndex=0;
+    //         //Create and append modal message for display - customize depending on where we are calling the modal from
+    //         modalAlert.addClass('is-active');
+    //     }
+    // })
 
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(event){
@@ -135,23 +136,23 @@ $(document).ready(function(){
             })
     }
 
-    getCocktail('Alcoholic');
-    getCocktail('Non_Alcoholic');
+    // getCocktail('Alcoholic');
+    // getCocktail('Non_Alcoholic');
     
 
 
     //Click event to initialize movie/cocktail search
-    fetchBtn.on('click', function(event){
+    submitBtn.on('click', function(event){
         event.preventDefault();
         event.stopPropagation();
 
-        genreName = genreInput.val();
-        console.log(genreName);
-        mapGenreNametoID(genreName);
-        console.log(genreId);
+        
+        console.log(genreInput.children("option:selected").val());
+        // mapGenreNametoID(genreName);
+        // console.log(genreId);
         //getMovieByGenre(genreId);
 
-        cocktailType = cocktailInput.val();
+        // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
 
