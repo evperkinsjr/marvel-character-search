@@ -54,8 +54,8 @@ $(document).ready(function(){
     //Displays movie details for initial search
     function displayMovieDetails(data) {
         movieTitleDisplay.text(data.results[0].title);
-        movieDesc.text(data.results[0].overview);
-        moviePoster.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
+        movieDescDisplay.text(data.results[0].overview);
+        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
     }
 
     //populates movie details when 'Next' is clicked
@@ -139,7 +139,6 @@ $(document).ready(function(){
         
         console.log(genreInput.children("option:selected").val());
         genreId = genreInput.children("option:selected").val();
-        
         getMovieByGenre();
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
