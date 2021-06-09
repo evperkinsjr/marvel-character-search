@@ -19,8 +19,8 @@ $(document).ready(function(){
 
 
     //Search the Movie DB API by genre
-    function getMovieByGenre(movieAPIKey,genre) {
-        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genre;
+    function getMovieByGenre() {
+        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genreId;
         
         fetch(requestURL)
             .then(function(response) {
@@ -50,22 +50,12 @@ $(document).ready(function(){
                 displayMovieDetails(movieResponse);
             })
     }
-    // getMovieByGenre('afc05c23c80ea33317e0bfb98d0810ca', 16);  //remove once HTML is set-up with inputs/button
 
     //Displays movie details for initial search
     function displayMovieDetails(data) {
-        movieTitle = $('<h2>').text(data.results[0].title);
-        movieDesc = $('<p>').text(data.results[0].overview);
-        moviePoster = $('<img>').attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
-        var nextBtn = $('<button>').text('Next');
-        var prevBtn = $('<button>').text('Previous');
-        nextBtn.attr('id','next-btn');
-        prevBtn.attr('id','prev-btn');
-        movieResultDiv.append(movieTitle);
-        movieResultDiv.append(movieDesc);
-        movieResultDiv.append(moviePoster);
-        movieResultDiv.append(nextBtn);
-        movieResultDiv.append(prevBtn);
+        movieTitleDisplay.text(data.results[0].title);
+        movieDescDisplay.text(data.results[0].overview);
+        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
     }
 
     //populates movie details when 'Next' is clicked
@@ -148,7 +138,9 @@ $(document).ready(function(){
 
         
         console.log(genreInput.children("option:selected").val());
+        genreId = genreInput.children("option:selected").val();
 
+        getMovieByGenre();
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
