@@ -38,24 +38,24 @@
 
         <main>
             <!--Row for Dropdowns and Roulette Button-->
-            <div class="container">
+            <form class="container">
                 <div class="columns">
                     <!--Dropdown for Genre-->
                     <div class="column">
                         <div class="select is-large">
-                            <select id="">
+                            <select id="#genre-input">
                                 <option disabled selected>Pick a Genre</option>
-                                <option>Action</option>
-                                <option>Horror</option>
-                                <option>Comedy</option>
-                                <option>Romance</option>
+                                <option value='28'>Action</option>
+                                <option value='27'>Horror</option>
+                                <option value='35'>Comedy</option>
+                                <option value='10749'>Romance</option>
                             </select>
                         </div>
                     </div>    
                     <!--Dropdown for Drinks-->
                     <div class="column">
                         <div class="select is-large">
-                            <select id="">
+                            <select id="cocktail-input">
                                 <option disabled selected>Pick a Drink Type</option>
                                 <option>Alcoholic</option>
                                 <option>Non-Alcoholic</option>
@@ -67,7 +67,7 @@
                         <button class="button is-large" id="submit-btn">Submit</button>
                     </div>
                 </div>    
-            </div>
+            </form>
 
 
             <!--Section for generated Movie and Drink-->
@@ -82,15 +82,15 @@
                                 <span class="icon">
                                   <i class="fas fa-film"></i>
                                 </span>
-                                <span id="">Movie Title</span>
+                                <span id="#movie-title">Add Movie Title</span>
                               </span>
                         </p>
                     </div>
                     <div class="columns">
                         <!--Movie Poster-->
                         <div class="card-image column">
-                            <figure class="image is-2by3" id="">
-                                <img src="./assets/images/movie-placeholder.jpg" alt="">
+                            <figure class="image is-2by3">
+                                <img id="movie-image">
                             </figure>
                         </div>
                         <!--Movie Info-->
@@ -98,8 +98,8 @@
                             <div class="card-content">
                                 <!--Movie Description-->
                                 <div class="block">
-                                    <p class="subtitle">Movie Description</p>
-                                    <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum.</p>
+                                    <p class="subtitle"></p>
+                                    <p id="#movie-description"></p>
                                 </div>
                                 <!--Duration-->
                                 <div class="block">
@@ -169,7 +169,14 @@
              <button class="button">Save to Favorites</button>
         </main>
             
-        <!--Linkt to Javascript-->
-        <script src="#"></script>
+       
+    <!--link to jquery library-->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+    </script>
+     <!--Linkt to Javascript-->
+    <script src="assets/js/script.js"></script>
     </body>
 </html>
