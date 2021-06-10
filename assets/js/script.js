@@ -14,6 +14,7 @@ $(document).ready(function(){
     var movieResponse;
     var movieIndex = 0;
     var cocktailType;
+    var randomCocktail;
 
 
     //Search the Movie DB API by genre
@@ -123,7 +124,32 @@ $(document).ready(function(){
 
                 console.log(randomCocktail);
 
+                var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
+            
+                fetch(drinkLookupUrl)
+                .then(function(response) {
+                    if(response.status===200) {
+                        console.log(response);
+                        return response.json();
+                    } else {
+                            //Create and append modal message for display - customize depending on where we are calling the modal from
+                            modalAlert.addClass('is-active');
+                        }
+                })
+                .then(function(data) {
+                    console.log(data);
 
+                    // Log the drink name
+                    console.log(data.drinks[0].strDrink);
+
+                    // Log the drink image
+                    console.log(data.drinks[0].strDrinkThumb);
+
+                    // Log the drink instuctions
+                    console.log(data.drinks[0].strInstructions);
+
+                    // Log the drink ingredients/measurements
+                })
             })
     }
 
