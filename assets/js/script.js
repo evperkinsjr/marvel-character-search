@@ -21,7 +21,8 @@ $(document).ready(function(){
     var movieIndex = 0;
     var cocktailType;
     var cocktailIndex = 0;
-
+    var cocktailTypeListLength = 0 
+    
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
@@ -127,6 +128,9 @@ $(document).ready(function(){
                 console.log(data.drinks[0].strDrinkThumb); //drink image
                 console.log(data.drinks[0].idDrink);  //drink id - can use to get ingredients, instructions to make
 
+                cocktailTypeListLength = data.drinks.length; //To set how many drink results we get per cocktail type
+                console.log(cocktailTypeListLength);
+
                 displayCocktailDetails(cocktailType, cocktailIndex);
             })
     }
@@ -170,7 +174,7 @@ $(document).ready(function(){
             displayCocktailDetails(cocktailType, cocktailIndex);
         } else {
             cocktailIndex=0;
-            //modal
+            // Modal
             modalAlert.addClass('is-active');
         }
     })
@@ -182,12 +186,13 @@ $(document).ready(function(){
 
         ++cocktailIndex;
         
-        if (cocktailIndex < 20) {
+        //Customized according the array length of each cocktail type
+        if (cocktailIndex < cocktailTypeListLength) {
             displayCocktailDetails(cocktailType, cocktailIndex);
         } else {
             
-            cocktailIndex=19;
-            //modal
+            cocktailIndex= cocktailTypeListLength - 1;
+            // Modal
             modalAlert.addClass('is-active');
         }
     })
