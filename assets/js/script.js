@@ -8,13 +8,11 @@ $(document).ready(function(){
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
     var modalAlert = $('#modal-alert');
-    var genreName;
+    var prevMovieBtn = $('#prev-movie-btn');
+    var nextMovieBtn = $('#next-movie-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
-    var movieTitle;
-    var movieDesc;
-    var moviePoster;
     var cocktailType;
 
 
@@ -43,60 +41,54 @@ $(document).ready(function(){
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
 
-                var title = data.results[0].title;
-                var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
-                console.log(titleCleaned);
+                // var title = data.results[0].title;
+                // var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
+                // console.log(titleCleaned);
 
-                displayMovieDetails(movieResponse);
+                displayMovieDetails(movieResponse,movieIndex);
             })
     }
 
     //Displays movie details for initial search
-    function displayMovieDetails(data) {
-        movieTitleDisplay.text(data.results[0].title);
-        movieDescDisplay.text(data.results[0].overview);
-        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[0].poster_path);
+    function displayMovieDetails(data, index) {
+        movieTitleDisplay.text(data.results[index].title);
+        movieDescDisplay.text(data.results[index].overview);
+        movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
     }
 
-    //populates movie details when 'Next' is clicked
-    function displayNextMovie(data, index) {
-        movieTitle.text(data.results[index].title);
-        movieDesc.text(data.results[index].overview);
-        moviePoster.attr('src', "https://image.tmdb.org/t/p/w185" + data.results[index].poster_path)
-    }
+    
+    // Click event on the 'Next' movie button
+    nextMovieBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //Click event on the 'Next' movie button
-    // movieResultDiv.on('click', '#next-btn', function(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
-
-    //     ++movieIndex;
+        ++movieIndex;
         
-    //     if (movieIndex < 20) {
-    //         displayNextMovie(movieResponse,movieIndex);
-    //     } else {
-    //         //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
-    //         movieIndex=19;
-    //         //Create and append modal message for display - customize depending on where we are calling the modal from
-    //         modalAlert.addClass('is-active');
-    //     }
-    // })
+        if (movieIndex < 20) {
+            displayMovieDetails(movieResponse,movieIndex);
+        } else {
+            //if want to grab another page of results, need to call getMovieByGenre and pass in page parameter that would be incremented here
+            movieIndex=19;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
+        }
+    })
 
-    //Click event on the 'Previous' movie button
-    // movieResultDiv.on('click', '#prev-btn', function(event) {
-    //     event.preventDefault();
-    //     event.stopPropagation();
+    // Click event on the 'Previous' movie button
+    prevMovieBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
-    //     --movieIndex;
+        --movieIndex;
 
-    //     if (movieIndex >= 0) {
-    //         displayNextMovie(movieResponse,movieIndex);
-    //     } else {
-    //         movieIndex=0;
-    //         //Create and append modal message for display - customize depending on where we are calling the modal from
-    //         modalAlert.addClass('is-active');
-    //     }
-    // })
+        if (movieIndex >= 0) {
+            displayMovieDetails(movieResponse,movieIndex);
+        } else {
+            movieIndex=0;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
+        }
+    })
 
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(event){
