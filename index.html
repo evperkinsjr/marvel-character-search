@@ -11,11 +11,15 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--Style CSS-->
         <link rel="stylesheet" href="style.css"/>
+        <!-- Font Family Style Link -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
     </head>
     <body>
 
         <!--Header/Navbar-->
-        <nav class="navbar is-spaced is-justify-content-space-between">
+        <nav class="navbar is-mobile is-centered">
             <!--Logo-->
             <div class="navbar-brand">
                 <a class="navbar-item">
@@ -24,10 +28,12 @@
                 </a>
             </div>
             <!--Title-->
-            <div class="navbar-item header-title">Movie Drink Roulette</div>
+            <div class="navbar-item header-title">
+                <h1 class="main-title">Movie & Drink Roulette</h1>
+            </div>    
             <!--Favorites Page Button-->
             <div class="navbar-item favorites-button">
-                <button class="button is-large" onclick="window.location.href = './favorites.html';">
+                <button class="button is-dark is-focused" onclick="window.location.href = './favorites.html';">
                     <span class="icon is-medium">
                         <i class="far fa-star"></i>
                     </span>
@@ -38,37 +44,47 @@
 
         <main>
             <!--Row for Dropdowns and Roulette Button-->
-            <form class="container">
-                <div class="columns">
-                    <!--Dropdown for Genre-->
-                    <div class="column">
-                        <div class="select is-large">
-                            <select id="genre-input">
-                                <option value="" disabled selected>Pick a Genre</option>
-                                <option value='28'>Action</option>
-                                <option value='27'>Horror</option>
-                                <option value='35'>Comedy</option>
-                                <option value='10749'>Romance</option>
-                            </select>
+            <div class="searchbar">
+                <form class="container">
+                    <div class="columns is-mobile">
+                        <!--Dropdown for Genre-->
+                        <div class="">
+                            <div class="select">
+                                <select id="genre-input">
+                                    <option value="" disabled selected>Pick a Genre</option>
+                                    <option value='28'>Action</option>
+                                    <option value='27'>Horror</option>
+                                    <option value='35'>Comedy</option>
+                                    <option value='10749'>Romance</option>
+                                </select>
+                            </div>
+                        </div>    
+                        <!--Dropdown for Drinks-->
+                        <div class="">
+                            <div class="select">
+                                <select id="cocktail-input">
+                                    <option disabled selected>Pick a Drink Type</option>
+                                    <option>Alcoholic</option>
+                                    <option>Non-Alcoholic</option>
+                                </select>           
+                            </div>
+                        </div> 
+                        <!--Roulette Button-->   
+                        <div class="submit-button is-hovered">
+                            <button class="button" id="submit-btn">Submit</button>
+                        </div>
+                        <!--Save to Favorites-->
+                        <div class="save-button">
+                            <button class="button">Save to Favorites</button>
                         </div>
                     </div>    
-                    <!--Dropdown for Drinks-->
-                    <div class="column">
-                        <div class="select is-large">
-                            <select id="cocktail-input">
-                                <option disabled selected>Pick a Drink Type</option>
-                                <option>Alcoholic</option>
-                                <option>Non-Alcoholic</option>
-                            </select>           
-                        </div>
-                    </div> 
-                    <!--Roulette Button-->   
-                    <div class="column is-one-fifth">
-                        <button class="button is-large" id="submit-btn">Submit</button>
-                    </div>
-                </div>    
-            </form>
+                </form>
+            </div>
 
+  <!--Save to Favorites-->
+  <!-- <div class="save-button">
+    <button class="button">Save to Favorites</button>
+  </div> -->
 
             <!--Section for generated Movie and Drink-->
             <div class="columns">
@@ -76,7 +92,7 @@
                 <!--Card for Movie-->
                 <div class="column card">
                     <!--Movie Title-->
-                    <div class="card-header">
+                    <div class="">
                         <p class="card-header-title title">
                             <span class="icon-text">
                                 <span class="icon">
@@ -98,17 +114,17 @@
                             <div class="card-content">
                                 <!--Movie Description-->
                                 <div class="block">
-                                    <p class="subtitle"></p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Description</p>
                                     <p id="movie-description"></p>
                                 </div>
                                 <!--Duration-->
                                 <div class="block">
-                                    <p class="subtitle">Movie Duration</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Duration</p>
                                     <p id="">120 minutes</p>
                                 </div>
                                 <!--Rating-->
                                 <div class="block">
-                                    <p class="subtitle">Rotten Tomatoes Score</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Rotten Tomatoes Score</p>
                                     <p id="">8.5</p>
                                 </div>
                             </div>
@@ -125,7 +141,7 @@
                 <!--Card for Drink-->
                 <div class="column card">
                     <!--Drink Name-->
-                    <div class="card-header">
+                    <div class="">
                         <p class="card-header-title title">
                             <span class="icon-text">
                                 <span class="icon">
@@ -147,12 +163,12 @@
                             <div class="card-content">
                                 <!--Ingredients-->
                                 <div class="block">
-                                    <p class="subtitle">Ingredients</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Ingredients</p>
                                     <p id=""> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                                 <!--Instructions-->
                                 <div class="block">
-                                    <p class="subtitle">Instructions</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Instructions</p>
                                     <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                             </div>
@@ -165,10 +181,6 @@
                     </div>
                 </div>
             </div>
-             <!--Save to Favorites-->
-             <button class="button">Save to Favorites</button>
-        </main>
-            
        
     <!--link to jquery library-->
     <script
@@ -178,5 +190,6 @@
     </script>
      <!--Linkt to Javascript-->
     <script src="assets/js/script.js"></script>
+        </main>
     </body>
 </html>
