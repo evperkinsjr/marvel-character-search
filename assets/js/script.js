@@ -113,12 +113,17 @@ $(document).ready(function(){
             .then(function(data) {
                 console.log(data);
 
-                cocktailType = data;
-                console.log(cocktailType);
+                // generate random number from data array
+                var randomNum = [Math.floor(Math.random() * data.drinks.length)];
 
-                console.log(data.drinks[0].strDrink);  //drink name
-                console.log(data.drinks[0].strDrinkThumb); //drink image
-                console.log(data.drinks[0].idDrink);  //drink id - can use to get ingredients, instructions to make
+                console.log(data.drinks[randomNum].idDrink);
+                
+                //drink id - can use to get ingredients, instructions to make
+                var randomCocktail = data.drinks[randomNum].idDrink;
+
+                console.log(randomCocktail);
+
+
             })
     }
 
