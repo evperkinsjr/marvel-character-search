@@ -7,6 +7,10 @@ $(document).ready(function(){
     var movieTitleDisplay = $('#movie-title');
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
+    var cocktailTitleDisplay = $('#cocktail-title');
+    var cocktailImageDisplay = $('#cocktail-image');
+    var cocktailIngredientsDisplay = $('#cocktail-ingredients');
+    var cocktailInstructionsDisplay = $('#cocktail-instructions');
     var modalAlert = $('#modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
@@ -14,6 +18,7 @@ $(document).ready(function(){
     var movieResponse;
     var movieIndex = 0;
     var cocktailType;
+    var cocktailIndex = 0;
 
 
     //Search the Movie DB API by genre
@@ -97,30 +102,40 @@ $(document).ready(function(){
 
 
     //Search cocktail API
-    function getCocktail(type) {
-        var requestURL = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + type;
+    function getCocktail() {
+        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
 
-        fetch(requestURL)
+        fetch(drinkRequestUrl)
             .then(function(response) {
                 if(response.status===200) {
+                    console.log(response);
                     return response.json();
                 } else {
                         //Create and append modal message for display - customize depending on where we are calling the modal from
                         modalAlert.addClass('is-active');
                     }
             })
-            .then (function(data) {
+            .then(function(data) {
                 console.log(data);
+
+                cocktailType = data;
+                console.log(cocktailType);
 
                 console.log(data.drinks[0].strDrink);  //drink name
                 console.log(data.drinks[0].strDrinkThumb); //drink image
                 console.log(data.drinks[0].idDrink);  //drink id - can use to get ingredients, instructions to make
+
+                displayCocktailDetails(cocktailType, cocktailIndex);
             })
     }
-
+    
     // getCocktail('Alcoholic');
     // getCocktail('Non_Alcoholic');
-    
+    // Display cocktail details for initial search 
+    function displayCocktailDetails(data, index) {
+        cocktailTitleDisplay.text(data.drinks[index].strDrink);
+        cocktailImageDisplay.attr('src', data.drinks[index].strDrinkThumb);
+    }
 
 
     //Click event to initialize movie/cocktail search
@@ -128,11 +143,16 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
 
-        
+        // movie
         console.log(genreInput.children("option:selected").val());
         genreId = genreInput.children("option:selected").val();
 
+        // cocktail
+        console.log(cocktailInput.children("option:selected").val());
+        cocktailType = cocktailInput.children("option:selected").val();
+
         getMovieByGenre();
+        getCocktail();
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
