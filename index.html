@@ -56,9 +56,9 @@
                     <div class="column">
                         <div class="select is-large">
                             <select id="cocktail-input">
-                                <option disabled selected>Pick a Drink Type</option>
-                                <option>Alcoholic</option>
-                                <option>Non-Alcoholic</option>
+                                <option value="" disabled selected>Pick a Drink Type</option>
+                                <option value="Alcoholic">Alcoholic</option>
+                                <option value="Non_Alcoholic">Non-Alcoholic</option>
                             </select>           
                         </div>
                     </div> 
@@ -82,7 +82,7 @@
                                 <span class="icon">
                                   <i class="fas fa-film"></i>
                                 </span>
-                                <span id="#movie-title">Add Movie Title</span>
+                                <span id="movie-title">Add Movie Title</span>
                               </span>
                         </p>
                     </div>
@@ -99,7 +99,7 @@
                                 <!--Movie Description-->
                                 <div class="block">
                                     <p class="subtitle"></p>
-                                    <p id="#movie-description"></p>
+                                    <p id="movie-description"></p>
                                 </div>
                                 <!--Duration-->
                                 <div class="block">
@@ -114,8 +114,8 @@
                             </div>
                             <!--Previous/Next Buttons-->
                             <footer class="card-footer">
-                                <button class="button card-footer-item">Previous</button>
-                                <button class="button card-footer-item">Next</button>
+                                <button class="button card-footer-item" id="prev-movie-btn">Previous</button>
+                                <button class="button card-footer-item"id='next-movie-btn'>Next</button>
                             </footer>
                         </div>
  
@@ -131,7 +131,7 @@
                                 <span class="icon">
                                   <i class="fas fa-cocktail"></i>
                                 </span>
-                                <span id="">Drink Name</span>
+                                <span id="cocktail-title">Drink Name</span>
                               </span>
                         </p>
                     </div>
@@ -139,7 +139,7 @@
                         <!--Drink Image-->
                         <div class="card-image column">
                             <figure class="image is-square">
-                                <img src="./assets/images/drink-placeholder.jpg" alt="">
+                                <img id="cocktail-image">
                             </figure>
                         </div>
                         <!--Drink Info-->
@@ -148,12 +148,12 @@
                                 <!--Ingredients-->
                                 <div class="block">
                                     <p class="subtitle">Ingredients</p>
-                                    <p id=""> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p id="cocktail-ingredients"> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                                 <!--Instructions-->
                                 <div class="block">
                                     <p class="subtitle">Instructions</p>
-                                    <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p id="cocktail-instructions">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                             </div>
                             <!--Previous/Next Buttons-->
