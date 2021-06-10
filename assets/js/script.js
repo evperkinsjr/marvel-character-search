@@ -7,14 +7,21 @@ $(document).ready(function(){
     var movieTitleDisplay = $('#movie-title');
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
+    var cocktailTitleDisplay = $('#cocktail-title');
+    var cocktailImageDisplay = $('#cocktail-image');
+    var cocktailIngredientsDisplay = $('#cocktail-ingredients');
+    var cocktailInstructionsDisplay = $('#cocktail-instructions');
     var modalAlert = $('#modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
+    var prevCocktailBtn = $('#prev-cocktail-btn');
+    var nextCocktailBtn = $('#next-cocktail-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
     var cocktailType;
     var randomCocktail;
+    var cocktailIndex = 0;
 
 
     //Search the Movie DB API by genre
@@ -150,12 +157,18 @@ $(document).ready(function(){
 
                     // Log the drink ingredients/measurements
                 })
+
+                displayCocktailDetails(cocktailType, cocktailIndex);
             })
     }
-
+    
     // getCocktail('Alcoholic');
     // getCocktail('Non_Alcoholic');
-    
+    // Display cocktail details for initial search 
+    function displayCocktailDetails(data, index) {
+        cocktailTitleDisplay.text(data.drinks[index].strDrink);
+        cocktailImageDisplay.attr('src', data.drinks[index].strDrinkThumb);
+    }
 
 
     //Click event to initialize movie/cocktail search
@@ -176,7 +189,39 @@ $(document).ready(function(){
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
+    
+    // Click event handler for the'Previous' cocktail button
+    prevCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
+        --cocktailIndex;
+
+        if (cocktailIndex >= 0) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            cocktailIndex=0;
+            //modal
+            modalAlert.addClass('is-active');
+        }
+    })
+
+     // Click event handler for 'Next' cocktail button
+    nextCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        ++cocktailIndex;
+        
+        if (cocktailIndex < 20) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            
+            cocktailIndex=19;
+            //modal
+            modalAlert.addClass('is-active');
+        }
+    })
     function mapGenreNametoID (genreName) {
         switch (genreName) {
             case 'Action':

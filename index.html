@@ -131,7 +131,7 @@
                                 <span class="icon">
                                   <i class="fas fa-cocktail"></i>
                                 </span>
-                                <span id="">Drink Name</span>
+                                <span id="cocktail-title">Drink Name</span>
                               </span>
                         </p>
                     </div>
@@ -139,7 +139,7 @@
                         <!--Drink Image-->
                         <div class="card-image column">
                             <figure class="image is-square">
-                                <img src="./assets/images/drink-placeholder.jpg" alt="">
+                                <img id="cocktail-image">
                             </figure>
                         </div>
                         <!--Drink Info-->
@@ -148,18 +148,18 @@
                                 <!--Ingredients-->
                                 <div class="block">
                                     <p class="subtitle">Ingredients</p>
-                                    <p id=""> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p id="cocktail-ingredients"> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                                 <!--Instructions-->
                                 <div class="block">
                                     <p class="subtitle">Instructions</p>
-                                    <p id="">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p id="cocktail-instructions">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
                                 </div>
                             </div>
                             <!--Previous/Next Buttons-->
                             <footer class="card-footer">
-                                <button class="button card-footer-item">Previous</button>
-                                <button class="button card-footer-item">Next</button>
+                                <button class="button card-footer-item" id="prev-cocktail-btn">Previous</button>
+                                <button class="button card-footer-item" id="next-cocktail-btn">Next</button>
                             </footer>
                         </div>    
                     </div>
@@ -167,8 +167,16 @@
             </div>
              <!--Save to Favorites-->
              <button class="button">Save to Favorites</button>
+             
         </main>
-            
+            <div class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                  <P>end</P>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </div>
+
        
     <!--link to jquery library-->
     <script
