@@ -20,6 +20,7 @@ $(document).ready(function(){
     var movieResponse;
     var movieIndex = 0;
     var cocktailType;
+    var randomCocktail;
     var cocktailIndex = 0;
     var cocktailTypeListLength = 0 
     
@@ -122,12 +123,42 @@ $(document).ready(function(){
             .then(function(data) {
                 console.log(data);
 
-                cocktailType = data;
-                console.log(cocktailType);
+                // generate random number from data array
+                var randomNum = [Math.floor(Math.random() * data.drinks.length)];
 
-                console.log(data.drinks[0].strDrink);  //drink name
-                console.log(data.drinks[0].strDrinkThumb); //drink image
-                console.log(data.drinks[0].idDrink);  //drink id - can use to get ingredients, instructions to make
+                console.log(data.drinks[randomNum].idDrink);
+                
+                //drink id - can use to get ingredients, instructions to make
+                var randomCocktail = data.drinks[randomNum].idDrink;
+
+                console.log(randomCocktail);
+
+                var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
+            
+                fetch(drinkLookupUrl)
+                .then(function(response) {
+                    if(response.status===200) {
+                        console.log(response);
+                        return response.json();
+                    } else {
+                            //Create and append modal message for display - customize depending on where we are calling the modal from
+                            modalAlert.addClass('is-active');
+                        }
+                })
+                .then(function(data) {
+                    console.log(data);
+
+                    // Log the drink name
+                    console.log(data.drinks[0].strDrink);
+
+                    // Log the drink image
+                    console.log(data.drinks[0].strDrinkThumb);
+
+                    // Log the drink instuctions
+                    console.log(data.drinks[0].strInstructions);
+
+                    // Log the drink ingredients/measurements
+                })
 
                 cocktailTypeListLength = data.drinks.length; //To set how many drink results we get per cocktail type
                 console.log(cocktailTypeListLength);
