@@ -14,6 +14,8 @@ $(document).ready(function(){
     var modalAlert = $('#modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
+    var prevCocktailBtn = $('#prev-cocktail-btn');
+    var nextCocktailBtn = $('#next-cocktail-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
@@ -156,7 +158,39 @@ $(document).ready(function(){
         // cocktailType = cocktailInput.val();
         //getCocktail(cocktailType);
     })
+    
+    // Click event handler for the'Previous' cocktail button
+    prevCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
 
+        --cocktailIndex;
+
+        if (cocktailIndex >= 0) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            cocktailIndex=0;
+            //modal
+            modalAlert.addClass('is-active');
+        }
+    })
+
+     // Click event handler for 'Next' cocktail button
+    nextCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        ++cocktailIndex;
+        
+        if (cocktailIndex < 20) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            
+            cocktailIndex=19;
+            //modal
+            modalAlert.addClass('is-active');
+        }
+    })
     function mapGenreNametoID (genreName) {
         switch (genreName) {
             case 'Action':
