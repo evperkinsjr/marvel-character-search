@@ -20,7 +20,8 @@ $(document).ready(function(){
 
     //Search the Movie DB API by genre
     function getMovieByGenre(movieAPIKey,genre) {
-        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genre;
+        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" 
+        + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genre;
         
         fetch(requestURL)
             .then(function(response) {
