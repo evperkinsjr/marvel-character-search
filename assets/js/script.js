@@ -85,16 +85,24 @@ $(document).ready(function(){
             movieIndex=19;
             //Create and append modal message for display - customize depending on where we are calling the modal from
             modalAlert.addClass('is-active');
+        
         }
     })
+        
+
 
     //Click event on the 'x' in the modal to close the modal
-    modalAlert.on('click', '.modal-close', function(event){
+    modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
     })
 
 
+
+
+
+
     //Search cocktail API
+
     function getCocktail() {
         var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
 
