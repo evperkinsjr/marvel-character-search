@@ -10,28 +10,150 @@
      <!--Font Awesome-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!--Style CSS-->
-     <link rel="stylesheet" href="style.css"/>
+     <link rel="stylesheet" href="./assets/css/glide.core.min.css">
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
+
+
+
+     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <main>
     <!--Header/Navbar-->
-    <nav class="navbar is-spaced is-justify-content-space-between">
-        <!--Logo-->
-        <div class="navbar-brand">
-            <a class="navbar-item">
-                <img src="./assets/images/video-player.png">
-                <img src="./assets/images/wine.png">
-            </a>
+        <nav class="navbar is-spaced is-justify-content-space-between">
+            <!--Logo-->
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    <img src="./assets/images/video-player.png">
+                    <img src="./assets/images/wine.png">
+                </a>
+            </div>
+            <!--Title-->
+            <div class="navbar-item githeader-title">Favorites Page</div>
+            <!--Favorites Page Button-->
+            <div class="navbar-item home-button">
+                <button class="button is-large" onclick="window.location.href = './index.html';">
+                    <span class="icon is-medium">
+                        <i class="fas fa-home"></i>
+                    </span>
+                    <span>Home</span>
+                </button>
+            </div>
+        </nav>
+    <!--movie container-->
+        <div class="container">
+            <div class="for-all">
+                <div class="track">
+
+                    <div class="for-one">
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                    </div>
+                    <div  class="for-one" >
+                        <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink">
+                    </div>
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                    </div>    
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink"> 
+                    </div>
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+
+                    </div>
+
+
+
+                    <div class="for-one">
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                        </div>
+                        <div  class="for-one" >
+                            <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink">
+                        </div>
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                        </div>    
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink"> 
+                        </div>
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+
+                        </div> 
+                </div>
+
         </div>
-        <!--Title-->
-        <div class="navbar-item githeader-title">Favorites Page</div>
-        <!--Favorites Page Button-->
-        <div class="navbar-item home-button">
-            <button class="button is-large" onclick="window.location.href = './index.html';">
-                <span class="icon is-medium">
-                    <i class="fas fa-home"></i>
-                </span>
-                <span>Home</span>
-            </button>
+        
+    </div>
+        
+
+
+
+<!--drink container-->
+
+    <div class="container">
+            <div class="for-all">
+                <div class="track">
+
+                    <div class="for-one">
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                    </div>
+                    <div  class="for-one" >
+                        <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink">
+                    </div>
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                    </div>    
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink"> 
+                    </div>
+                    <div class="for-one" >
+                        <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+
+                    </div>
+
+
+
+                    <div class="for-one">
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                        </div>
+                        <div  class="for-one" >
+                            <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink">
+                        </div>
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+                        </div>    
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/drink-placeholder.jpg" alt="drink"> 
+                        </div>
+                        <div class="for-one" >
+                            <img class ="images" src="./assets/images/movie-placeholder.jpg" alt="drink">
+
+                        </div> 
+                </div>
+
         </div>
+        
+    </div>
+        
+
+
+
+
+
+
+
+
+
+</main> 
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
+  <script>
+  new Glide('.glide').mount()
+  </script>
+
+
+ 
+<script src="assets/js/script.js"></script>
 </body>
 </html>
