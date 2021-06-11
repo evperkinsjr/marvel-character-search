@@ -152,7 +152,7 @@ box-shadow: none;
 .track{
     display: flex;
     width:calc(250px * 18);
-    animation:slide 40s linear infinite ;
+    animation:scroll 40s linear infinite ;
 
 }
 
@@ -218,7 +218,7 @@ box-shadow: none;
     }
 }
 
-@keyframes slide{
+@keyframes scroll{
   0%{
     transform: translate3d(0, 0, 0);
   }
