@@ -14,16 +14,22 @@ $(document).ready(function(){
     var modalAlert = $('modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
+    var prevCocktailBtn = $('#prev-cocktail-btn');
+    var nextCocktailBtn = $('#next-cocktail-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
     var cocktailType;
+    var randomCocktail;
+    var randomDetailsArray;
     var cocktailIndex = 0;
+    var cocktailArray;
 
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
-        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + "&language=en-US&include_adult=false&include_video=false&with_original_language=en&with_genres=" + genreId;
+        var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + 
+                        "&language=en-US&include_adult=false&include_video=false&with_original_language=en&primary_release_date.gte=2011-01-01&with_genres=" + genreId;
         
         fetch(requestURL)
             .then(function(response) {
@@ -39,6 +45,7 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
+                saveMovie(movieResponse);
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -122,29 +129,78 @@ $(document).ready(function(){
                 } else {
                         //Create and append modal message for display - customize depending on where we are calling the modal from
                         modalAlert.addClass('is-active');
-                    }
+                }
             })
             .then(function(data) {
                 console.log(data);
-
-                cocktailType = data;
-                console.log(cocktailType);
-
-                console.log(data.drinks[0].strDrink);  //drink name
-                console.log(data.drinks[0].strDrinkThumb); //drink image
-                console.log(data.drinks[0].idDrink);  //drink id - can use to get ingredients, instructions to make
-
-                displayCocktailDetails(cocktailType, cocktailIndex);
-            })
+                cocktailArray = data;
+                getRandomDrink(cocktailArray);
+            });
+           
     }
+
+    function getRandomDrink(data) {
+
+        // generate random number from data array
+        var randomNum = [Math.floor(Math.random() * data.drinks.length)];
+
+        console.log(data.drinks[randomNum].idDrink);
+    
+        //drink id - can use to get ingredients, instructions to make
+        randomCocktail = data.drinks[randomNum].idDrink;
+
+        console.log(randomCocktail);
+
+        getDrinkDetails();
+    }
+    
+
+    function getDrinkDetails() {
+        var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
+
+        fetch(drinkLookupUrl)
+        .then(function(response) {
+            if(response.status===200) {
+                console.log(response);
+                return response.json();
+            } else {
+                    //Create and append modal message for display - customize depending on where we are calling the modal from
+                    modalAlert.addClass('is-active');
+                }
+        })
+        .then(function(data) {
+            console.log(data);
+
+            randomDetailsArray = data;
+
+            // Log the drink name
+            console.log(data.drinks[0].strDrink);
+
+            console.log(randomDetailsArray.drinks[0].strDrink);
+            // Log the drink image
+            console.log(data.drinks[0].strDrinkThumb);
+
+            // Log the drink instuctions
+            console.log(data.drinks[0].strInstructions);
+
+            console.log(randomDetailsArray.drinks[cocktailIndex].strDrink);
+            // Log the drink ingredients/measurements
+            cocktailTitleDisplay.text(data.drinks[cocktailIndex].strDrink);
+            cocktailImageDisplay.attr('src', data.drinks[cocktailIndex].strDrinkThumb);
+            cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
+        });
+
+        /* displayCocktailDetails(randomDetailsArray, cocktailIndex); */
+        
+    }
+    
     
     // getCocktail('Alcoholic');
     // getCocktail('Non_Alcoholic');
     // Display cocktail details for initial search 
-    function displayCocktailDetails(data, index) {
-        cocktailTitleDisplay.text(data.drinks[index].strDrink);
-        cocktailImageDisplay.attr('src', data.drinks[index].strDrinkThumb);
-    }
+    /* function displayCocktailDetails(data, index) {
+        
+    } */
 
 
     //Click event to initialize movie/cocktail search
@@ -153,19 +209,51 @@ $(document).ready(function(){
         event.stopPropagation();
 
         // movie
+        movieIndex = 0;
         console.log(genreInput.children("option:selected").val());
         genreId = genreInput.children("option:selected").val();
 
         // cocktail
+        cocktailIndex=0;
         console.log(cocktailInput.children("option:selected").val());
         cocktailType = cocktailInput.children("option:selected").val();
 
         getMovieByGenre();
         getCocktail();
-        // cocktailType = cocktailInput.val();
-        //getCocktail(cocktailType);
+    })
+    
+    // Click event handler for the'Previous' cocktail button
+    prevCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        --cocktailIndex;
+
+        if (cocktailIndex >= 0) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            cocktailIndex=0;
+            //modal
+            modalAlert.addClass('is-active');
+        }
     })
 
+     // Click event handler for 'Next' cocktail button
+    nextCocktailBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        ++cocktailIndex;
+        
+        if (cocktailIndex < 20) {
+            displayCocktailDetails(cocktailType, cocktailIndex);
+        } else {
+            
+            cocktailIndex=19;
+            //modal
+            modalAlert.addClass('is-active');
+        }
+    })
     function mapGenreNametoID (genreName) {
         switch (genreName) {
             case 'Action':
@@ -231,3 +319,12 @@ $(document).ready(function(){
         return genreId;
     }
 })
+
+
+// Saving To Local Storage
+var saveButton = document.querySelector(".save-button")
+
+function saveMovie(movieResponse) {
+    // var movieId = movieResponse.results[movieIndex].id;
+    console.log(movieResponse);
+};
