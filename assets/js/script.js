@@ -110,7 +110,7 @@ $(document).ready(function(){
 
     //Search cocktail API
     function getCocktail() {
-        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
+        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
 
         fetch(drinkRequestUrl)
             .then(function(response) {
@@ -145,7 +145,7 @@ $(document).ready(function(){
         getDrinkDetails();
     }
     
-
+    // Search cocktail api to get full drink details
     function getDrinkDetails() {
         var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
 
