@@ -10,12 +10,16 @@
         <!--Font Awesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <!--Style CSS-->
-        <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="assets/css/style.css"/>
+        <!-- Font Family Style Link -->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
     </head>
     <body>
 
         <!--Header/Navbar-->
-        <nav class="navbar is-spaced is-justify-content-space-between">
+        <nav class="navbar is-centered is-flex is-justify-content-space-between">
             <!--Logo-->
             <div class="navbar-brand">
                 <a class="navbar-item">
@@ -24,10 +28,12 @@
                 </a>
             </div>
             <!--Title-->
-            <div class="navbar-item header-title">Movie Drink Roulette</div>
+            <div class="navbar-item header-title">
+                <h1 class="main-title">Movie & Drink Roulette</h1>
+            </div>    
             <!--Favorites Page Button-->
             <div class="navbar-item favorites-button">
-                <button class="button is-large" onclick="window.location.href = './favorites.html';">
+                <button class="button is-dark is-focused" onclick="window.location.href = './favorites.html';">
                     <span class="icon is-medium">
                         <i class="far fa-star"></i>
                     </span>
@@ -38,37 +44,39 @@
 
         <main>
             <!--Row for Dropdowns and Roulette Button-->
-            <form class="container">
-                <div class="columns">
-                    <!--Dropdown for Genre-->
-                    <div class="column">
-                        <div class="select is-large">
-                            <select id="genre-input">
-                                <option value="" disabled selected>Pick a Genre</option>
-                                <option value='28'>Action</option>
-                                <option value='27'>Horror</option>
-                                <option value='35'>Comedy</option>
-                                <option value='10749'>Romance</option>
-                            </select>
-                        </div>
-                    </div>    
-                    <!--Dropdown for Drinks-->
-                    <div class="column">
-                        <div class="select is-large">
-                            <select id="cocktail-input">
-                                <option value="" disabled selected>Pick a Drink Type</option>
-                                <option value="Alcoholic">Alcoholic</option>
-                                <option value="Non_Alcoholic">Non-Alcoholic</option>
-                            </select>           
-                        </div>
-                    </div> 
-                    <!--Roulette Button-->   
-                    <div class="column is-one-fifth">
-                        <button class="button is-large" id="submit-btn">Submit</button>
-                    </div>
+            <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
+                <!--Dropdown for Genre-->
+                <div class="select">
+                    <select id="genre-input">
+                        <option value="" disabled selected>Pick a Genre</option>
+                        <option value='28'>Action</option>
+                        <option value='16'>Animation</option>
+                        <option value='35'>Comedy</option>
+                        <option value='18'>Drama</option>
+                        <option value='27'>Horror</option>
+                        <option value='9648'>Mystery</option>
+                        <option value='10749'>Romance</option>
+                    </select>
+                </div>
+
+                <!--Dropdown for Drinks-->
+                <div class="select">
+                    <select id="cocktail-input">
+                        <option value="" disabled selected>Pick a Drink Type</option>
+                        <option value='Alcoholic'>Alcoholic</option>
+                        <option value='Non_Alcoholic'>Non-Alcoholic</option>
+                    </select>           
+                </div>
+
+                <!--Roulette Button-->   
+                <div class="submit-button is-hovered">
+                    <button class="button" id="submit-btn">Submit</button>
+                </div>
+                <!--Save to Favorites-->
+                <div class="save-button">
+                    <button class="button">Save to Favorites</button>
                 </div>    
             </form>
-
 
             <!--Section for generated Movie and Drink-->
             <div class="columns">
@@ -76,7 +84,7 @@
                 <!--Card for Movie-->
                 <div class="column card">
                     <!--Movie Title-->
-                    <div class="card-header">
+                    <div class="">
                         <p class="card-header-title title">
                             <span class="icon-text">
                                 <span class="icon">
@@ -88,7 +96,7 @@
                     </div>
                     <div class="columns">
                         <!--Movie Poster-->
-                        <div class="card-image column">
+                        <div class="card-image column" id='movie-poster-custom'>
                             <figure class="image is-2by3">
                                 <img id="movie-image">
                             </figure>
@@ -98,24 +106,23 @@
                             <div class="card-content">
                                 <!--Movie Description-->
                                 <div class="block">
-                                    <p class="subtitle"></p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Description</p>
                                     <p id="movie-description"></p>
                                 </div>
                                 <!--Duration-->
                                 <div class="block">
-                                    <p class="subtitle">Movie Duration</p>
-                                    <p id="">120 minutes</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Release Date</p>
+                                    <p id="">MM-DD-YYYY</p>
                                 </div>
                                 <!--Rating-->
                                 <div class="block">
-                                    <p class="subtitle">Rotten Tomatoes Score</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">TMDb User Rating <span class='score-out-of'>(out of 10)</span></p>
                                     <p id="">8.5</p>
                                 </div>
                             </div>
                             <!--Previous/Next Buttons-->
                             <footer class="card-footer">
-                                <button class="button card-footer-item" id="prev-movie-btn">Previous</button>
-                                <button class="button card-footer-item"id='next-movie-btn'>Next</button>
+                                <button class="button card-footer-item" id="new-movie-btn">New Movie</button>
                             </footer>
                         </div>
  
@@ -125,7 +132,7 @@
                 <!--Card for Drink-->
                 <div class="column card">
                     <!--Drink Name-->
-                    <div class="card-header">
+                    <div class="">
                         <p class="card-header-title title">
                             <span class="icon-text">
                                 <span class="icon">
@@ -137,7 +144,7 @@
                     </div>
                     <div class="columns">
                         <!--Drink Image-->
-                        <div class="card-image column">
+                        <div class="card-image column" id='cocktail-image-custom'>
                             <figure class="image is-square">
                                 <img id="cocktail-image">
                             </figure>
@@ -147,26 +154,23 @@
                             <div class="card-content">
                                 <!--Ingredients-->
                                 <div class="block">
-                                    <p class="subtitle">Ingredients</p>
-                                    <p id="cocktail-ingredients"> Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Ingredients</p>
+                                    <p id="cocktail-ingredients"></p>
                                 </div>
                                 <!--Instructions-->
                                 <div class="block">
-                                    <p class="subtitle">Instructions</p>
-                                    <p id="cocktail-instructions">Lorem ipsum leo risus, porta ac consectetur ac, vestibulum at eros. Donec id elit non mi porta gravida at eget metus.</p>
+                                    <p class="subtitle-negative-margin has-text-weight-semibold">Instructions</p>
+                                    <p id="cocktail-instructions"></p>
                                 </div>
                             </div>
                             <!--Previous/Next Buttons-->
                             <footer class="card-footer">
-                                <button class="button card-footer-item" id="prev-cocktail-btn">Previous</button>
-                                <button class="button card-footer-item" id="next-cocktail-btn">Next</button>
+                                <button class="button card-footer-item" id="new-cocktail-btn">New Cocktail</button>
                             </footer>
                         </div>    
                     </div>
                 </div>
             </div>
-             <!--Save to Favorites-->
-             <button class="button">Save to Favorites</button>
              
         </main>
             <div class="modal">
@@ -175,7 +179,21 @@
                   <P>end</P>
                 </div>
                 <button class="modal-close is-large" aria-label="close"></button>
+
+        <footer class='credits'>
+            <p>Credits:</p>
+            <p>Movie details sourced from TMDb API.</p>
+            <p>Cocktail details sourced from the Cocktail DB API.</p>
+        </footer>
+        
+        
+        <div class="modal" id="modal-alert">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+            <P>end</P>
             </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
 
        
     <!--link to jquery library-->
@@ -186,5 +204,6 @@
     </script>
      <!--Linkt to Javascript-->
     <script src="assets/js/script.js"></script>
+        </main>
     </body>
 </html>
