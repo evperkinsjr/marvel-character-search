@@ -42,6 +42,7 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
+                saveMovie(movieResponse);
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -257,3 +258,12 @@ $(document).ready(function(){
         return genreId;
     }
 })
+
+
+// Saving To Local Storage
+var saveButton = document.querySelector(".save-button")
+
+function saveMovie(movieResponse) {
+    // var movieId = movieResponse.results[movieIndex].id;
+    console.log(movieResponse);
+};
