@@ -7,6 +7,8 @@ $(document).ready(function(){
     var movieTitleDisplay = $('#movie-title');
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
+    var movieReleaseDateDisplay = $('#movie-release-date');
+    var movieRatingDisplay = $('#tmdb-user-rating');
     var cocktailTitleDisplay = $('#cocktail-title');
     var cocktailImageDisplay = $('#cocktail-image');
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
@@ -66,6 +68,8 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
+        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieRatingDisplay.text(data.results[index].vote_average);
     }
 
     
