@@ -77,6 +77,27 @@ input, .select select, .textarea  {
     margin-right: 25px;
 }
 
+/*Movie,Cocktail Title*/
+#movie-title,
+#cocktail-title {
+    padding-top:10px;
+    line-height:35px;
+}
+
+/*Movie,Cocktail Image*/
+#movie-poster-custom,
+#cocktail-image-custom{
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+}
+/*Movie Score Style*/
+.score-out-of {
+    font-size: 0.75em;
+    font-weight:normal;
+}
+
 /* Style for Cards */
 .column {
     margin:10px;
@@ -103,6 +124,7 @@ box-shadow: none;
     padding-top: 10px;
     padding-left: 10px;
     font-size:10px;
+    text-align: center;
 }
 
 /*Changes to layout when screen size has min-wdith of 1024px*/
