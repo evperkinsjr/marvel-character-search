@@ -1,0 +1,136 @@
+/* Color Pallete */
+:root {
+    --brand-color: #8C2559;
+    --light-accent: #B97B73;
+    --dark-accent: #7A7394;
+    --white: #EDE0D8;
+    --black: #1D1B23;
+}
+
+/* Universal */
+.button {
+    background-color: #575757;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+select {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Style for Body */
+body, html {
+    background-color: grey;
+    font-family: 'Josefin Sans', sans-serif;}
+
+/* Style for Navbar */
+.navbar {
+    background-color: black;
+    margin-left: auto;
+    box-shadow: 0px 1px 10px black;
+}
+.header-title {
+    color: rgb(184, 74, 74);
+    font-size: 4.5vw;
+}
+.navbar-item img {
+    min-width: 1em;
+    min-height: 4em;
+    object-fit: cover;
+    background-color: gray;
+}
+.main-title {
+    font-family: 'Limelight', cursive;
+    text-shadow: 2px 2px 5px yellow;
+}
+
+
+/* Style for Search Bar */
+.searchbar {
+    padding: 15px;
+    padding-bottom: 20px;
+}
+input, .select select, .textarea  {
+    background-color: #363636;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+.select {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.button {
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* Style for Card Container */
+.columns {
+    margin-top: 0;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+/*Movie,Cocktail Title*/
+#movie-title,
+#cocktail-title {
+    padding-top:10px;
+    line-height:35px;
+}
+
+/*Movie,Cocktail Image*/
+#movie-poster-custom,
+#cocktail-image-custom{
+    margin-left:0;
+    margin-right:0;
+    padding-left:0;
+    padding-right:0;
+}
+/*Movie Score Style*/
+.score-out-of {
+    font-size: 0.75em;
+    font-weight:normal;
+}
+
+/* Style for Cards */
+.column {
+    margin:10px;
+}
+.icon-text{
+    align-items: baseline;
+}
+.card {
+background-color: beige;
+}
+.card-header-title {
+font-weight: 600;
+}
+.card-content {
+padding: 0;
+box-shadow: none;
+}
+.card-footer-item {
+    margin-top: 10px;
+}
+
+/*Style for footer*/
+.credits {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size:10px;
+    text-align: center;
+}
+
+/*Changes to layout when screen size has min-wdith of 1024px*/
+@media screen and (max-width: 1024px) {
+    .navbar {
+        flex-direction: column;
+        align-items: center;
+    }
+}

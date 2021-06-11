@@ -120,7 +120,7 @@ $(document).ready(function(){
                 } else {
                         //Create and append modal message for display - customize depending on where we are calling the modal from
                         modalAlert.addClass('is-active');
-                    }
+                }
             })
             .then(function(data) {
                 console.log(data);
