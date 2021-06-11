@@ -21,7 +21,9 @@ $(document).ready(function(){
     var movieIndex = 0;
     var cocktailType;
     var randomCocktail;
+    var randomDetailsArray;
     var cocktailIndex = 0;
+    var cocktailArray;
 
 
     //Search the Movie DB API by genre
@@ -120,55 +122,74 @@ $(document).ready(function(){
             })
             .then(function(data) {
                 console.log(data);
-
-                // generate random number from data array
-                var randomNum = [Math.floor(Math.random() * data.drinks.length)];
-
-                console.log(data.drinks[randomNum].idDrink);
-                
-                //drink id - can use to get ingredients, instructions to make
-                var randomCocktail = data.drinks[randomNum].idDrink;
-
-                console.log(randomCocktail);
-
-                var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
-            
-                fetch(drinkLookupUrl)
-                .then(function(response) {
-                    if(response.status===200) {
-                        console.log(response);
-                        return response.json();
-                    } else {
-                            //Create and append modal message for display - customize depending on where we are calling the modal from
-                            modalAlert.addClass('is-active');
-                        }
-                })
-                .then(function(data) {
-                    console.log(data);
-
-                    // Log the drink name
-                    console.log(data.drinks[0].strDrink);
-
-                    // Log the drink image
-                    console.log(data.drinks[0].strDrinkThumb);
-
-                    // Log the drink instuctions
-                    console.log(data.drinks[0].strInstructions);
-
-                    // Log the drink ingredients/measurements
-                })
-
-                displayCocktailDetails(cocktailType, cocktailIndex);
-            })
+                cocktailArray = data;
+                getRandomDrink(cocktailArray);
+            });
+           
     }
+
+    function getRandomDrink(data) {
+
+        // generate random number from data array
+        var randomNum = [Math.floor(Math.random() * data.drinks.length)];
+
+        console.log(data.drinks[randomNum].idDrink);
+    
+        //drink id - can use to get ingredients, instructions to make
+        randomCocktail = data.drinks[randomNum].idDrink;
+
+        console.log(randomCocktail);
+
+        getDrinkDetails();
+    }
+    
+
+    function getDrinkDetails() {
+        var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
+
+        fetch(drinkLookupUrl)
+        .then(function(response) {
+            if(response.status===200) {
+                console.log(response);
+                return response.json();
+            } else {
+                    //Create and append modal message for display - customize depending on where we are calling the modal from
+                    modalAlert.addClass('is-active');
+                }
+        })
+        .then(function(data) {
+            console.log(data);
+
+            randomDetailsArray = data;
+
+            // Log the drink name
+            console.log(data.drinks[0].strDrink);
+
+            console.log(randomDetailsArray.drinks[0].strDrink);
+            // Log the drink image
+            console.log(data.drinks[0].strDrinkThumb);
+
+            // Log the drink instuctions
+            console.log(data.drinks[0].strInstructions);
+
+            console.log(randomDetailsArray.drinks[cocktailIndex].strDrink);
+            // Log the drink ingredients/measurements
+            cocktailTitleDisplay.text(data.drinks[cocktailIndex].strDrink);
+            cocktailImageDisplay.attr('src', data.drinks[cocktailIndex].strDrinkThumb);
+            cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
+        });
+
+        /* displayCocktailDetails(randomDetailsArray, cocktailIndex); */
+        
+    }
+    
     
     // getCocktail('Alcoholic');
     // getCocktail('Non_Alcoholic');
     // Display cocktail details for initial search 
-    function displayCocktailDetails(data, index) {
-        cocktailTitleDisplay.text(data.drinks[index].strDrink);
-        cocktailImageDisplay.attr('src', data.drinks[index].strDrinkThumb);
-    }
+    /* function displayCocktailDetails(data, index) {
+        
+    } */
 
 
     //Click event to initialize movie/cocktail search
