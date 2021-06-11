@@ -99,3 +99,10 @@ box-shadow: none;
 .card-footer-item {
     margin-top: 10px;
 }
+
+/*Style for footer*/
+.credits {
+    padding-top: 10px;
+    padding-left: 10px;
+    font-size:10px;
+}
