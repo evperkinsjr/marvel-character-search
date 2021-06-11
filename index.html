@@ -19,7 +19,7 @@
     <body>
 
         <!--Header/Navbar-->
-        <nav class="navbar is-flex is-centered">
+        <nav class="navbar is-centered is-flex is-justify-content-space-between">
             <!--Logo-->
             <div class="navbar-brand">
                 <a class="navbar-item">
@@ -44,50 +44,39 @@
 
         <main>
             <!--Row for Dropdowns and Roulette Button-->
-            <div class="searchbar">
-                <form class="container">
-                    <div class="columns is-mobile">
-                        <!--Dropdown for Genre-->
-                        <div class="">
-                            <div class="select">
-                                <select id="genre-input">
-                                    <option value="" disabled selected>Pick a Genre</option>
-                                    <option value='28'>Action</option>
-                                    <option value='16'>Animation</option>
-                                    <option value='35'>Comedy</option>
-                                    <option value='18'>Drama</option>
-                                    <option value='27'>Horror</option>
-                                    <option value='9648'>Mystery</option>
-                                    <option value='10749'>Romance</option>
-                                </select>
-                            </div>
-                        </div>    
-                        <!--Dropdown for Drinks-->
-                        <div class="">
-                            <div class="select">
-                                <select id="cocktail-input">
-                                    <option value="" disabled selected>Pick a Drink Type</option>
-                                    <option value='Alcoholic'>Alcoholic</option>
-                                    <option value='Non_Alcoholic'>Non-Alcoholic</option>
-                                </select>           
-                            </div>
-                        </div> 
-                        <!--Roulette Button-->   
-                        <div class="submit-button is-hovered">
-                            <button class="button" id="submit-btn">Submit</button>
-                        </div>
-                        <!--Save to Favorites-->
-                        <div class="save-button">
-                            <button class="button">Save to Favorites</button>
-                        </div>    
-                    </div>        
-                </form>
-            </div>
+            <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
+                <!--Dropdown for Genre-->
+                <div class="select">
+                    <select id="genre-input">
+                        <option value="" disabled selected>Pick a Genre</option>
+                        <option value='28'>Action</option>
+                        <option value='16'>Animation</option>
+                        <option value='35'>Comedy</option>
+                        <option value='18'>Drama</option>
+                        <option value='27'>Horror</option>
+                        <option value='9648'>Mystery</option>
+                        <option value='10749'>Romance</option>
+                    </select>
+                </div>
 
-  <!--Save to Favorites-->
-  <!-- <div class="save-button">
-    <button class="button">Save to Favorites</button>
-  </div> -->
+                <!--Dropdown for Drinks-->
+                <div class="select">
+                    <select id="cocktail-input">
+                        <option value="" disabled selected>Pick a Drink Type</option>
+                        <option value='Alcoholic'>Alcoholic</option>
+                        <option value='Non_Alcoholic'>Non-Alcoholic</option>
+                    </select>           
+                </div>
+
+                <!--Roulette Button-->   
+                <div class="submit-button is-hovered">
+                    <button class="button" id="submit-btn">Submit</button>
+                </div>
+                <!--Save to Favorites-->
+                <div class="save-button">
+                    <button class="button">Save to Favorites</button>
+                </div>    
+            </form>
 
             <!--Section for generated Movie and Drink-->
             <div class="columns">
