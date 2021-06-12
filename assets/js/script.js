@@ -207,7 +207,8 @@ $(document).ready(function(){
         });
         
     }
-
+    //variable for modal text
+        
 
     //Click event to initialize movie/cocktail search
     submitBtn.on('click', function(event){
@@ -216,7 +217,8 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-            modalText.text("Please select a movie genre and drink type.")
+           modalText.text("Please select a movie genre and drink type.");
+            
             return;
         }
 

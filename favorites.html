@@ -1,216 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Movie & Drink Roulette</title>
-        <!--Link to Bulma(CSS)-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
-        <!--Font Awesome-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!--Style CSS-->
-        <link rel="stylesheet" href="assets/css/style.css"/>
-        <!-- Font Family Style Link -->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <!--Header/Navbar-->
-        <nav class="navbar is-centered is-flex is-justify-content-space-between">
+<html lang=“en”>
+<head>
+    <meta charset=“UTF-8">
+    <meta http-equiv=“X-UA-Compatible” content=“IE=edge”>
+    <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+     <!--Link to Bulma(CSS)-->
+     <link rel=“stylesheet” href=“https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css”/>
+     <!--Font Awesome-->
+     <link rel=“stylesheet” href=“https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css” integrity=“sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==” crossorigin=“anonymous” referrerpolicy=“no-referrer” />
+     <!--Style CSS-->
+     <link rel=“stylesheet” href=“./assets/css/glide.core.min.css”>
+    <link rel=“stylesheet” href=“node_modules/@glidejs/glide/dist/css/glide.core.min.css”>
+    <link rel=“stylesheet” href=“node_modules/@glidejs/glide/dist/css/glide.theme.min.css”>
+     <link rel=“stylesheet” href=“./assets/css/style.css”>
+</head>
+<body>
+    <main>
+    <!--Header/Navbar-->
+        <nav class=“navbar is-spaced is-justify-content-space-between”>
             <!--Logo-->
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="./assets/images/video-player.png">
-                    <img src="./assets/images/wine.png">
+            <div class=“navbar-brand”>
+                <a class=“navbar-item”>
+                    <img src=“./assets/images/video-player.png”>
+                    <img src=“./assets/images/wine.png”>
                 </a>
             </div>
             <!--Title-->
-            <div class="navbar-item header-title">
-                <h1 class="main-title">Movie & Drink Roulette</h1>
-            </div>    
+            <div class=“navbar-item githeader-title”>Favorites Page</div>
             <!--Favorites Page Button-->
-            <div class="navbar-item favorites-button">
-                <button class="button is-dark is-focused" onclick="window.location.href = './favorites.html';">
-                    <span class="icon is-medium">
-                        <i class="far fa-star"></i>
+            i        <div class=“navbar-item home-button”>
+                <button class=“button is-large” onclick=“window.location.href = ‘./index.html’;“>
+                    <span class=“icon is-medium”>
+                        <i class=“fas fa-home”></i>
                     </span>
-                    <span>Favorites</span>
+                    <span>Home</span>
                 </button>
             </div>
-<<<<<<< HEAD
-        </nav>  
-        <main>
-            <!--Row for Dropdowns and Roulette Button-->
-            <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
-                <!--Dropdown for Genre-->
-                <div class="select">
-                    <select id="genre-input">
-                        <option value="" disabled selected>Pick a Genre</option>
-                        <option value='28'>Action</option>
-                        <option value='16'>Animation</option>
-                        <option value='35'>Comedy</option>
-                        <option value='18'>Drama</option>
-                        <option value='27'>Horror</option>
-                        <option value='9648'>Mystery</option>
-                        <option value='10749'>Romance</option>
-                    </select>
-                </div>
-                <!--Dropdown for Drinks-->
-                <div class="select">
-                    <select id="cocktail-input">
-                        <option value="" disabled selected>Pick a Drink Type</option>
-                        <option value='i=Bourbon'>Bourbon</option>
-                        <option value='i=Brandy'>Brandy</option>
-                        <option value='i=Gin'>Gin</option>
-                        <option value='i=Light_rum'>Light Rum</option>
-                        <option value='a=Non_Alcoholic'>Non-Alcoholic</option>
-                        <option value='i=Scotch'>Scotch</option>
-                        <option value='i=Tequila'>Tequila</option>
-                        <option value='i=Vodka'>Vodka</option>
-                    </select>           
-                </div>
-                <!--Roulette Button-->   
-                <div class="submit-button is-hovered">
-                    <button class="button" id="submit-btn">Submit</button>
-                </div>
-                <!--Save to Favorites-->
-                <div class="save-button">
-                    <button class="button">Save to Favorites</button>
-                </div>    
-            </form>
-            <!--Section for generated Movie and Drink-->
-            <div class="columns">
-                <!--Card for Movie-->
-                <div class="column card">
-                    <!--Movie Title-->
-                    <div class="">
-                        <p class="card-header-title title">
-                            <span class="icon-text">
-                                <span class="icon">
-                                  <i class="fas fa-film"></i>
-                                </span>
-                                <span id="movie-title">Add Movie Title</span>
-                              </span>
-                        </p>
-                    </div>
-                    <div class="columns">
-                        <!--Movie Poster-->
-                        <div class="card-image column" id='movie-poster-custom'>
-                            <figure class="image is-2by3">
-                                <img id="movie-image">
-                            </figure>
-                        </div>
-                        <!--Movie Info-->
-                        <div class="column">
-                            <div class="card-content">
-                                <!--Movie Description-->
-                                <div class="block">
-                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Description</p>
-                                    <p id="movie-description"></p>
-                                </div>
-                                <!--Duration-->
-                                <div class="block">
-                                    <p class="subtitle-negative-margin has-text-weight-semibold">Movie Release Date</p>
-                                    <p id="movie-release-date"></p>
-                                </div>
-                                <!--Rating-->
-                                <div class="block">
-                                    <p class="subtitle-negative-margin has-text-weight-semibold">TMDb User Rating <span class='score-out-of'>(out of 10)</span></p>
-                                    <p id="tmdb-user-rating"></p>
-                                </div>
-                            </div>
-                            <!--New Movie Button-->
-                            <footer class="card-footer">
-                                <button class="button card-footer-item" id="new-movie-btn">New Movie</button>
-                            </footer>
-                        </div>
-                    </div>
-                </div>
-                <!--Card for Drink-->
-                <div class="column card">
-                    <!--Drink Name-->
-                    <div class="">
-                        <p class="card-header-title title">
-                            <span class="icon-text">
-                                <span class="icon">
-                                  <i class="fas fa-cocktail"></i>
-                                </span>
-                                <span id="cocktail-title">Drink Name</span>
-                              </span>
-                        </p>
-                    </div>
-                    <div class="columns">
-                        <!--Drink Image-->
-                        <div class="card-image column" id='cocktail-image-custom'>
-                            <figure class="image is-square">
-                                <img id="cocktail-image">
-                            </figure>
-                        </div>
-                        <!--Drink Info-->
-                        <div class="column">
-                            <div class="card-content">
-                                <!--Ingredients-->
-                                <div class="block">
-                                    <p class="subtitle-negative-margin has-text-weight-semibold">Ingredients</p>
-                                    <ul id="cocktail-ingredients"></ul>
-                                </div>
-                                <!--Instructions-->
-                                <div class="block">
-                                    <p class="subtitle-negative-margin has-text-weight-semibold">Instructions</p>
-                                    <p id="cocktail-instructions"></p>
-                                </div>
-                            </div>
-                            <!-- New Cocktail Button-->
-                            <footer class="card-footer">
-                                <button class="button card-footer-item" id="new-cocktail-btn">New Cocktail</button>
-                            </footer>
-                        </div>    
-                    </div>
-                </div>
-            </div>
-        </main>
-        <footer class='credits'>
-            <p>Credits:</p>
-            <p>Movie details sourced from TMDb API.</p>
-            <p>Cocktail details sourced from the Cocktail DB API.</p>
-        </footer>
-        <div class="modal" id="modal-alert">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-            <p id="modal-text"></p>
-            </div>
-            <button class="modal-close is-large" aria-label="close"></button>
-        </div>
-    <!--link to jquery library-->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous">
-    </script>
-     <!--Linkt to Javascript-->
-    <script src="assets/js/script.js"></script>
-        </main>
-    </body>
-</html>
-
-=======
         </nav>
     <!--movie container-->
-
     <section id=“”>
         <div id=“”>
             <h3>Movie Title</h3>
     </section>
-
 <!--drink container-->
     <section id=“”>
         <div id=“”>
             <h3>Cocktail Title</h3>
         </div>
     </section>
->>>>>>> e0c243b5009bb67e1fd76aa23ed390e2d32ca365
+</main>
+  <script src=“https://cdn.jsdelivr.net/npm/@glidejs/glide”></script>
+  <script>
+  new Glide(‘.glide’).mount()
+  </script>
+<script src=“assets/js/script.js”></script>
+</body>
+</html>
+
 
 
 
