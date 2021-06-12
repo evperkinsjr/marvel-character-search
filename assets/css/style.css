@@ -241,6 +241,7 @@ box-shadow: none;
     box-sizing: border-box 0;
     text-align: center;
     position: relative;
+    z-index: 2;
 }
 
 #second-interface{
