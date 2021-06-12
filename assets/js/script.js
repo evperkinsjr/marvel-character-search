@@ -329,52 +329,32 @@ $(document).ready(function(){
 var saveButton = document.querySelector(".save-button");
 var movieId;
 var drinkId;
-    // Saves our favorite combination in an array
-
-
-//     // Function to save movieId (earlier defined)
-// function saveMovie() {
-//     // movieId = data.results[0].id
-//     console.log(movieId);
-//     localStorage.setItem("movieId", JSON.stringify(movieId));
-// };
-
-//     // Function to save drinkId (earlier defined)
-// function saveDrink() {
-//     console.log(drinkId);
-//     localStorage.setItem("drinkId", JSON.stringify(drinkId));
-// }
-
+var favComboList = []
+      
     // Function to save movieId AND drinkId
 function saveCombo() {
     console.log(movieId);
     console.log(drinkId);
+    
     var favCombo = {
             movie: movieId,
             drink: drinkId,
         } 
-    var existingCombos = JSON.parse(localStorage.getItem("favComboList"));
-    if(existingCombos == null) existingCombos = [];
-    localStorage.setItem("combo", JSON.stringify(favCombo));
-    existingCombos.push(favCombo);
-    localStorage.setItem("favcombolist", JSON.stringify(existingCombos));
+    favComboList.push(favCombo);
+    localStorage.setItem("favComboList", JSON.stringify(favComboList));
+}
+    // Function to get saved combos from local storage
+function initSavedCombo() {
+    var storedCombo = localStorage.getItem('favComboList');
+    if (storedCombo) {
+        favComboList = JSON.parse(storedCombo);
+    }
 }
 
     // Event listener for button to save movie and drink Id's to local storage
 saveButton.addEventListener("click", function(event) {
     event.preventDefault();
-    // saveMovie();
-    // saveDrink();
     saveCombo();
-    // var favComboList = []
-    // var favCombo = {
-    //     movie: movieId,
-    //     drink: drinkId,
-    // } 
-    // localStorage.setItem("favComboList", JSON.stringify(favCombo));
-
-    // Adds new favorite combo to array favCombo ****NOT WORKING****
-    // favComboList.push(favCombo);
 });
 
-
+initSavedCombo();
