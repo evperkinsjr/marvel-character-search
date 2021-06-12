@@ -7,14 +7,13 @@ $(document).ready(function(){
     var movieTitleDisplay = $('#movie-title');
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
-    var movieReleaseDateDisplay = $('#movie-release-date');
-    var movieRatingDisplay = $('#tmdb-user-rating');
     var cocktailTitleDisplay = $('#cocktail-title');
     var cocktailImageDisplay = $('#cocktail-image');
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
     var cocktailInstructionsDisplay = $('#cocktail-instructions');
-    var modalAlert = $('#modal-alert');
-    var newMovieBtn = $('#new-movie-btn');
+    var modalAlert = $('modal-alert');
+    var prevMovieBtn = $('#prev-movie-btn');
+    var nextMovieBtn = $('#next-movie-btn');
     var newCocktailBtn = $('#new-cocktail-btn');
     var genreId;
     var movieResponse;
@@ -66,13 +65,11 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
-        movieReleaseDateDisplay.text(data.results[index].release_date);
-        movieRatingDisplay.text(data.results[index].vote_average);
     }
 
     
     // Click event on the 'Next' movie button
-    newMovieBtn.on('click', function(event) {
+    nextMovieBtn.on('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
 
@@ -91,6 +88,23 @@ $(document).ready(function(){
         
 
 
+    // Click event on the 'Previous' movie button
+    prevMovieBtn.on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        --movieIndex;
+
+        if (movieIndex >= 0) {
+            displayMovieDetails(movieResponse,movieIndex);
+        } else {
+            movieIndex=0;
+            //Create and append modal message for display - customize depending on where we are calling the modal from
+            modalAlert.addClass('is-active');
+
+        }
+    })
+
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
@@ -104,7 +118,7 @@ $(document).ready(function(){
     //Search cocktail API
 
     function getCocktail() {
-        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
+        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
 
         fetch(drinkRequestUrl)
             .then(function(response) {
@@ -118,43 +132,9 @@ $(document).ready(function(){
             })
             .then(function(data) {
                 console.log(data);
-                cocktailArray = data;
-                getRandomDrink(cocktailArray);
-            });
-           
-    }
 
-    function getRandomDrink(data) {
-
-        // generate random number from data array
-        var randomNum = [Math.floor(Math.random() * data.drinks.length)];
-
-        console.log(data.drinks[randomNum].idDrink);
-    
-        //drink id - can use to get ingredients, instructions to make
-        randomCocktail = data.drinks[randomNum].idDrink;
-
-        console.log(randomCocktail);
-
-        getDrinkDetails();
-    }
-    
-    // Search cocktail api to get full drink details
-    function getDrinkDetails() {
-        var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
-
-        fetch(drinkLookupUrl)
-        .then(function(response) {
-            if(response.status===200) {
-                console.log(response);
-                return response.json();
-            } else {
-                    //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
-                }
-        })
-        .then(function(data) {
-            console.log(data);
+                // generate random number from data array
+                var randomNum = [Math.floor(Math.random() * data.drinks.length)];
 
                 console.log(data.drinks[randomNum].idDrink);
                 
