@@ -45,7 +45,7 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                movieId = data;
+                movieId = data.results[0].id;
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -325,14 +325,14 @@ $(document).ready(function(){
 var saveButton = document.querySelector(".save-button");
 var movieId;
 
-function saveMovie(data) {
+function saveMovie() {
     // var movieId = movieResponse.results[movieIndex].id;
-    movieId = data.results[0].id
+    // movieId = data.results[0].id
     console.log(movieId);
     localStorage.setItem("movieId", JSON.stringify(movieId));
 };
 
 saveButton.addEventListener("click", function(event) {
     event.preventDefault();
-    saveMovie(movieId);
+    saveMovie();
 });
