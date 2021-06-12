@@ -10,13 +10,11 @@
      <!--Font Awesome-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!--Style CSS-->
-     <link rel="stylesheet" href="./assets/css/glide.core.min.css">
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
-
-
-
      <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Family Style Link -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">     
 </head>
 <body>
     <main>
@@ -30,11 +28,12 @@
                 </a>
             </div>
             <!--Title-->
-            <div class="navbar-item githeader-title">Favorites Page</div>
-            <!--Favorites Page Button-->
-    
-            i        <div class="navbar-item home-button">
-                <button class="button is-large" onclick="window.location.href = './index.html';">
+            <div class="navbar-item header-title">
+                <h1 class="main-title">Favorites Page</h1>
+            </div>
+            <!--Home Page Button--> 
+            <div class="navbar-item home-button">
+                <button class="button is-dark is-focused" onclick="window.location.href = './index.html';">
                     <span class="icon is-medium">
                         <i class="fas fa-home"></i>
                     </span>
@@ -44,26 +43,26 @@
         </nav>
     <!--movie container-->
 
-    <section id=“”>
-        <div id=“”>
-            <h3>Movie Title</h3>
-    </section>
+        <section id=“”>
+            <div id=“”>
+                <h3>Movie Title</h3>
+                </div>
+        </section>
 
-<!--drink container-->
-    <section id=“”>
-        <div id=“”>
-            <h3>Cocktail Title</h3>
-        </div>
-    </section>
+    <!--drink container-->
+        <section id=“”>
+            <div id=“”>
+                <h3>Cocktail Title</h3>
+            </div>
+        </section>
+    </main> 
 
-
-</main> 
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script>
-  new Glide('.glide').mount()
-  </script>
-
-
+<!--link to jquery library-->
+<script
+src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous">
+</script>
  
 <script src="assets/js/script.js"></script>
 </body>
