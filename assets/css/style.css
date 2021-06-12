@@ -227,3 +227,48 @@ box-shadow: none;
   }
 }
 
+
+
+/*collasing display*/
+
+
+
+/*#inter{
+    background-color:black;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box 0;
+    text-align: center;
+    position: relative;
+}
+
+#second-interface{
+    text-align: center;
+    position: absolute;
+    top:30%;
+    left:24%;
+    border: solid 1px;
+    border-color:rgb(184, 74, 74) ;
+    padding:25px;
+}
+
+h1,h2{
+    font-family: 'Limelight', cursive;
+    text-shadow: 2px 2px 5px yellow;
+    color: rgb(184, 74, 74);
+    font-size:  48px;
+    text-align: center;
+    text-transform: capitalize;
+
+}
+
+h2{
+    font-size: 32px;
+}
+
+#interface-btn{
+    margin-top: 50px;
+    background-color:rgb(184, 74, 74) ;
+
+}*/
