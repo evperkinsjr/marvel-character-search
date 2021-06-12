@@ -14,8 +14,7 @@ $(document).ready(function(){
     var modalAlert = $('modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
-    var prevCocktailBtn = $('#prev-cocktail-btn');
-    var nextCocktailBtn = $('#next-cocktail-btn');
+    var newCocktailBtn = $('#new-cocktail-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
@@ -160,14 +159,30 @@ $(document).ready(function(){
 
                     // Log the drink name
                     console.log(data.drinks[0].strDrink);
+                    cocktailTitleDisplay.text(data.drinks[0].strDrink);
 
                     // Log the drink image
                     console.log(data.drinks[0].strDrinkThumb);
+                    cocktailImageDisplay.attr('src', data.drinks[0].strDrinkThumb);
 
                     // Log the drink instuctions
                     console.log(data.drinks[0].strInstructions);
+                    cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
 
-                    // Log the drink ingredients/measurements
+                    // Log the drink ingredients
+                    var ingredientList = document.querySelector('#cocktail-ingredients');
+                    for(var i=1; i<16; i++) {
+                        console.log();
+
+                        if(data.drinks[0][`strIngredient${i}`] == null){
+                            break;
+                        }
+                        
+                        var ingredientItem = document.createElement('li');
+                        ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+
+                        ingredientList.appendChild(ingredientItem);
+                    }
                 })
 
                 cocktailTypeListLength = data.drinks.length; //To set how many drink results we get per cocktail type
@@ -175,14 +190,6 @@ $(document).ready(function(){
 
                 displayCocktailDetails(cocktailType, cocktailIndex);
             })
-    }
-    
-    // getCocktail('Alcoholic');
-    // getCocktail('Non_Alcoholic');
-    // Display cocktail details for initial search 
-    function displayCocktailDetails(data, index) {
-        cocktailTitleDisplay.text(data.drinks[index].strDrink);
-        cocktailImageDisplay.attr('src', data.drinks[index].strDrinkThumb);
     }
 
 
@@ -206,19 +213,11 @@ $(document).ready(function(){
     })
     
     // Click event handler for the'Previous' cocktail button
-    prevCocktailBtn.on('click', function(event) {
+    newCocktailBtn.on('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
 
-        --cocktailIndex;
-
-        if (cocktailIndex >= 0) {
-            displayCocktailDetails(cocktailType, cocktailIndex);
-        } else {
-            cocktailIndex=0;
-            // Modal
-            modalAlert.addClass('is-active');
-        }
+        getCocktail();
     })
 
      // Click event handler for 'Next' cocktail button
