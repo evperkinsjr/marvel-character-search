@@ -70,6 +70,9 @@ input, .select select, .textarea  {
     margin-bottom: 10px;
 }
 
+#save-favorite-button {
+    visibility: hidden;
+}
 /* Style for Card Container */
 .columns {
     margin-top: 0;
