@@ -63,8 +63,14 @@
                 <div class="select">
                     <select id="cocktail-input">
                         <option value="" disabled selected>Pick a Drink Type</option>
-                        <option value='Alcoholic'>Alcoholic</option>
-                        <option value='Non_Alcoholic'>Non-Alcoholic</option>
+                        <option value='i=Bourbon'>Bourbon</option>
+                        <option value='i=Brandy'>Brandy</option>
+                        <option value='i=Gin'>Gin</option>
+                        <option value='i=Light_rum'>Light Rum</option>
+                        <option value='a=Non_Alcoholic'>Non-Alcoholic</option>
+                        <option value='i=Scotch'>Scotch</option>
+                        <option value='i=Tequila'>Tequila</option>
+                        <option value='i=Vodka'>Vodka</option>
                     </select>           
                 </div>
 
@@ -112,15 +118,15 @@
                                 <!--Duration-->
                                 <div class="block">
                                     <p class="subtitle-negative-margin has-text-weight-semibold">Movie Release Date</p>
-                                    <p id="">MM-DD-YYYY</p>
+                                    <p id="movie-release-date"></p>
                                 </div>
                                 <!--Rating-->
                                 <div class="block">
                                     <p class="subtitle-negative-margin has-text-weight-semibold">TMDb User Rating <span class='score-out-of'>(out of 10)</span></p>
-                                    <p id="">8.5</p>
+                                    <p id="tmdb-user-rating"></p>
                                 </div>
                             </div>
-                            <!--Previous/Next Buttons-->
+                            <!--New Movie Button-->
                             <footer class="card-footer">
                                 <button class="button card-footer-item" id="new-movie-btn">New Movie</button>
                             </footer>
@@ -163,7 +169,7 @@
                                     <p id="cocktail-instructions"></p>
                                 </div>
                             </div>
-                            <!--Previous/Next Buttons-->
+                            <!-- New Cocktail Button-->
                             <footer class="card-footer">
                                 <button class="button card-footer-item" id="new-cocktail-btn">New Cocktail</button>
                             </footer>
