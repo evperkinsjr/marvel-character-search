@@ -14,6 +14,7 @@ $(document).ready(function(){
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
     var cocktailInstructionsDisplay = $('#cocktail-instructions');
     var modalAlert = $('#modal-alert');
+    var modalText = $('#modal-text');
     var newMovieBtn = $('#new-movie-btn');
     var newCocktailBtn = $('#new-cocktail-btn');
     var genreId;
@@ -203,6 +204,12 @@ $(document).ready(function(){
     submitBtn.on('click', function(event){
         event.preventDefault();
         event.stopPropagation();
+
+        if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
+            modalAlert.addClass('is-active');
+            modalText.text("Please select a movie genre and drink type.")
+            return;
+        }
 
         // movie
         movieIndex = 0;
