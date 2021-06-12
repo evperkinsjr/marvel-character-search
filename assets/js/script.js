@@ -45,6 +45,7 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
+                // Sets movieId to be used in Local Storage Function 
                 movieId = data.results[0].id;
 
                 console.log(data.results[0].id) //movie Id
@@ -172,6 +173,8 @@ $(document).ready(function(){
             console.log(data);
 
             randomDetailsArray = data;
+            //  Sets drinkId to be used in Saving to Local Storage Function
+            drinkId = data.drinks[0].idDrink;
 
             // Log the drink name
             console.log(data.drinks[0].strDrink);
@@ -324,15 +327,25 @@ $(document).ready(function(){
 // Saving To Local Storage
 var saveButton = document.querySelector(".save-button");
 var movieId;
+var drinkId;
 
+    // Function to save movieId (earlier defined)
 function saveMovie() {
-    // var movieId = movieResponse.results[movieIndex].id;
     // movieId = data.results[0].id
     console.log(movieId);
     localStorage.setItem("movieId", JSON.stringify(movieId));
 };
 
+    // Function to save drinkId (earlier defined)
+function saveDrink() {
+    console.log(drinkId);
+    localStorage.setItem("drinkId", JSON.stringify(drinkId));
+}
+
+    // Event listener for button to save movie and drink Id's to local storage
 saveButton.addEventListener("click", function(event) {
     event.preventDefault();
     saveMovie();
+    saveDrink();
 });
+
