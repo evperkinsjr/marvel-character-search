@@ -229,3 +229,12 @@ box-shadow: none;
     transform: translate3d(-1692px, 0, 0);
   }
 }
+
+
+/*styling for modal*/
+
+
+
+#modal-text{
+    background-color: white;
+}

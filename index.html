@@ -169,20 +169,21 @@
                     </div>
                 </div>
             </div>
-        </main>
+        
         <footer class='credits'>
             <p>Credits:</p>
             <p>Movie details sourced from TMDb API.</p>
             <p>Cocktail details sourced from the Cocktail DB API.</p>
         </footer>
-        <div class="modal" id="modal-alert">
+        <div class="modal is-active" id="modal-alert">
             <div class="modal-background"></div>
-            <div class="modal-content">
-            <p id="modal-text"></p>
+            <div class="modal-content has-background-white py-5 px-5" id="modal-bc">
+            <p id="modal-text" class="title mb-6"></p>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
     <!--link to jquery library-->
+    </main>
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
