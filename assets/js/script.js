@@ -11,7 +11,7 @@ $(document).ready(function(){
     var cocktailImageDisplay = $('#cocktail-image');
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
     var cocktailInstructionsDisplay = $('#cocktail-instructions');
-    var modalAlert = $('#modal-alert');
+    var modalAlert = $('modal-alert');
     var prevMovieBtn = $('#prev-movie-btn');
     var nextMovieBtn = $('#next-movie-btn');
     var prevCocktailBtn = $('#prev-cocktail-btn');
@@ -82,8 +82,11 @@ $(document).ready(function(){
             movieIndex=19;
             //Create and append modal message for display - customize depending on where we are calling the modal from
             modalAlert.addClass('is-active');
+        
         }
     })
+        
+
 
     // Click event on the 'Previous' movie button
     prevMovieBtn.on('click', function(event) {
@@ -98,16 +101,22 @@ $(document).ready(function(){
             movieIndex=0;
             //Create and append modal message for display - customize depending on where we are calling the modal from
             modalAlert.addClass('is-active');
+
         }
     })
 
     //Click event on the 'x' in the modal to close the modal
-    modalAlert.on('click', '.modal-close', function(event){
+    modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
     })
 
 
+
+
+
+
     //Search cocktail API
+
     function getCocktail() {
         var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
 
@@ -119,7 +128,7 @@ $(document).ready(function(){
                 } else {
                         //Create and append modal message for display - customize depending on where we are calling the modal from
                         modalAlert.addClass('is-active');
-                    }
+                }
             })
             .then(function(data) {
                 console.log(data);
