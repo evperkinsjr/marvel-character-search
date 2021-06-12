@@ -170,11 +170,26 @@ $(document).ready(function(){
 
             console.log(randomDetailsArray.drinks[cocktailIndex].strDrink);
             // Log the drink ingredients/measurements
+    
 
             // Attach cocktail info to page
             cocktailTitleDisplay.text(data.drinks[cocktailIndex].strDrink);
             cocktailImageDisplay.attr('src', data.drinks[cocktailIndex].strDrinkThumb);
-            cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
+            cocktailInstructionsDisplay.text(data.drinks[cocktailIndex].strInstructions);
+
+            for(var i=1; i<16; i++) {
+                console.log();
+
+                if(data.drinks[0][`strIngredient${i}`] == null){
+                    break;
+                }
+                
+                var ingredientItem = document.createElement('li');
+                ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+
+                cocktailIngredientsDisplay.append(ingredientItem);
+            }
+
         });
         
     }
@@ -205,8 +220,15 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
 
+        removeIngredients(cocktailIngredientsDisplay);
+
         getCocktail();
     })
+
+    function removeIngredients(parent) {
+        $(parent).empty();
+    }
+    
 
     function mapGenreNametoID (genreName) {
         switch (genreName) {
