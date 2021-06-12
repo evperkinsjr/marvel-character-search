@@ -22,6 +22,7 @@ $(document).ready(function(){
     var randomCocktail;
     var cocktailIndex = 0;
     var cocktailTypeListLength = 0 
+    var ingredientList = document.querySelector('#cocktail-ingredients');
     
 
     //Search the Movie DB API by genre
@@ -170,7 +171,7 @@ $(document).ready(function(){
                     cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
 
                     // Log the drink ingredients
-                    var ingredientList = document.querySelector('#cocktail-ingredients');
+                    
                     for(var i=1; i<16; i++) {
                         console.log();
 
@@ -216,27 +217,18 @@ $(document).ready(function(){
     newCocktailBtn.on('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
+        
+        removeIngredients(ingredientList);
 
         getCocktail();
     })
 
-     // Click event handler for 'Next' cocktail button
-    nextCocktailBtn.on('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        ++cocktailIndex;
-        
-        //Customized according the array length of each cocktail type
-        if (cocktailIndex < cocktailTypeListLength) {
-            displayCocktailDetails(cocktailType, cocktailIndex);
-        } else {
-            
-            cocktailIndex= cocktailTypeListLength - 1;
-            // Modal
-            modalAlert.addClass('is-active');
+    function removeIngredients(parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild)
         }
-    })
+    }
+    
     function mapGenreNametoID (genreName) {
         switch (genreName) {
             case 'Action':
