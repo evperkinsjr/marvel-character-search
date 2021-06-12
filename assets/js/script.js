@@ -46,7 +46,8 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                saveMovie(movieResponse);
+                // Sets movieId to be used in Local Storage Function 
+                movieId = data.results[0].id;
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -158,6 +159,8 @@ $(document).ready(function(){
             console.log(data);
 
             randomDetailsArray = data;
+            //  Sets drinkId to be used in Saving to Local Storage Function
+            drinkId = data.drinks[0].idDrink;
 
             // Log the drink name
             console.log(data.drinks[0].strDrink);
@@ -304,10 +307,37 @@ $(document).ready(function(){
 })
 
 
-// Saving To Local Storage
-var saveButton = document.querySelector(".save-button")
 
-function saveMovie(movieResponse) {
-    // var movieId = movieResponse.results[movieIndex].id;
-    console.log(movieResponse);
-};
+// Saving To Local Storage
+var saveButton = document.querySelector(".save-button");
+var movieId;
+var drinkId;
+var favComboList = []
+      
+    // Function to save movieId AND drinkId
+function saveCombo() {
+    console.log(movieId);
+    console.log(drinkId);
+    
+    var favCombo = {
+            movie: movieId,
+            drink: drinkId,
+        } 
+    favComboList.push(favCombo);
+    localStorage.setItem("favComboList", JSON.stringify(favComboList));
+}
+    // Function to get saved combos from local storage
+function initSavedCombo() {
+    var storedCombo = localStorage.getItem('favComboList');
+    if (storedCombo) {
+        favComboList = JSON.parse(storedCombo);
+    }
+}
+
+    // Event listener for button to save movie and drink Id's to local storage
+saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    saveCombo();
+});
+
+initSavedCombo();
