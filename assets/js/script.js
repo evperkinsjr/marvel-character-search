@@ -275,10 +275,3 @@ $(document).ready(function(){
 })
 
 
-// Saving To Local Storage
-var saveButton = document.querySelector(".save-button")
-
-function saveMovie(movieResponse) {
-    // var movieId = movieResponse.results[movieIndex].id;
-    console.log(movieResponse);
-};
