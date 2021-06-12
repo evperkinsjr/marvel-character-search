@@ -14,6 +14,7 @@ $(document).ready(function(){
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
     var cocktailInstructionsDisplay = $('#cocktail-instructions');
     var modalAlert = $('#modal-alert');
+    var modalText = $('#modal-text');
     var newMovieBtn = $('#new-movie-btn');
     var newCocktailBtn = $('#new-cocktail-btn');
     var genreId;
@@ -24,6 +25,7 @@ $(document).ready(function(){
     var randomDetailsArray;
     var cocktailIndex = 0;
     var cocktailArray;
+    var saveFavButton = $('#save-favorite-button');
 
 
     //Search the Movie DB API by genre
@@ -45,7 +47,11 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                saveMovie(movieResponse);
+                // Sets movieId to be used in Local Storage Function 
+                movieId = data.results[0].id;
+                savMovieTitle = data.results[0].title
+                savMovieDesc = data.results[0].overview
+                savMovieRelDate = data.results[0].release_date
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -155,8 +161,14 @@ $(document).ready(function(){
         })
         .then(function(data) {
             console.log(data);
+            
+            savDrinkTitle = data.drinks[0].strDrink;
+            savDrinkInstr = data.drinks[0].strInstructions;
+            // savDrinkIngr = 
 
             randomDetailsArray = data;
+            //  Sets drinkId to be used in Saving to Local Storage Function
+            drinkId = data.drinks[0].idDrink;
 
             // Log the drink name
             console.log(data.drinks[0].strDrink);
@@ -187,6 +199,8 @@ $(document).ready(function(){
                 var ingredientItem = document.createElement('li');
                 ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
 
+            
+
                 cocktailIngredientsDisplay.append(ingredientItem);
             }
 
@@ -201,6 +215,12 @@ $(document).ready(function(){
         event.preventDefault();
         event.stopPropagation();
 
+        if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
+            modalAlert.addClass('is-active');
+            modalText.text("Please select a movie genre and drink type.")
+            return;
+        }
+
         // movie
         movieIndex = 0;
         console.log(genreInput.children("option:selected").val());
@@ -213,6 +233,8 @@ $(document).ready(function(){
 
         getMovieByGenre();
         getCocktail();
+
+        document.getElementById("save-favorite-button").style.visibility = "visible"
     })
 
      // Click event handler for 'Next' cocktail button
@@ -228,79 +250,51 @@ $(document).ready(function(){
     function removeIngredients(parent) {
         $(parent).empty();
     }
-    
-
-    function mapGenreNametoID (genreName) {
-        switch (genreName) {
-            case 'Action':
-                genreId=28;
-                break;
-            case 'Adventure':
-                genreId=12;
-                break;
-            case 'Animation':
-                genreId=16;
-                break;
-            case 'Comedy':
-                genreId=35;
-                break;
-            case 'Crime':
-                genreId=80;
-                break;
-            case 'Documentary':
-                genreId=99;
-                break;
-            case 'Drama':
-                genreId=18;
-                break;
-            case 'Family':
-                genreId=10751;
-                break;
-            case 'Fantasy':
-                genreId=14;
-                break;
-            case 'History':
-                genreId=36;
-                break;
-            case 'Horror':
-                genreId=27;
-                break;
-            case 'Music':
-                genreId=10402;
-                break;
-            case 'Mystery':
-                genreId=9648;
-                break;
-            case 'Romance':
-                genreId=10749;
-                break;
-            case 'Science Fiction':
-                genreId=878;
-                break;
-            case 'TV Movie':
-                genreId=10770;
-                break;
-            case 'Thriller':
-                genreId=53;
-                break;
-            case 'War':
-                genreId=10752;
-                break;
-            case 'Western':
-                genreId=37;
-                break;
-            default:
-                console.log('No match found.')
-        }
-        return genreId;
-    }
 })
 
 
 // Saving To Local Storage
-var saveButton = document.querySelector(".save-button")
+var saveButton = document.querySelector(".save-button");
+var movieId;
+var drinkId;
+var savMovieTitle;
+var savMovieTitle;
+var savMovieDesc;
+var savMovieRelDate;
+var favComboList = []
+      
+    // Function to save movieId AND drinkId
+function saveCombo() {
+    console.log(movieId);
+    console.log(drinkId);
+    
+    var favCombo = {
+            movieTitle: savMovieTitle,
+            movieDesc: savMovieDesc,
+            movieRelDate: savMovieRelDate,
+            drinkTitle: savDrinkTitle,
+            drinkInstr: savDrinkInstr,
+            // drinkIngr: savDrinkIngr,
+        } 
+    favComboList.push(favCombo);
+    localStorage.setItem("favComboList", JSON.stringify(favComboList));
+}
+    // Function to get saved combos from local storage
+function initSavedCombo() {
+    var storedCombo = localStorage.getItem('favComboList');
+    if (storedCombo) {
+        favComboList = JSON.parse(storedCombo);
+    }
+}
 
-function saveMovie(movieResponse) {
-    // var movieId = movieResponse.results[movieIndex].id;
-    console.log(movieResponse);
-};
+    // Event listener for button to save movie and drink Id's to local storage
+saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    saveCombo();
+
+    if (movieId === undefined || drinkId === undefined) {
+        return;
+    }
+});
+
+initSavedCombo();
