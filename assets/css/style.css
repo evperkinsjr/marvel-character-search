@@ -233,8 +233,13 @@ box-shadow: none;
 
 /*styling for modal*/
 
-
+.modal-content{
+    text-align: center;
+}
 
 #modal-text{
-    background-color: white;
+    text-align: center;
+    background-color:#B97B73;
+    padding: 10px 0;
+    color: white;
 }

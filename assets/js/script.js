@@ -207,7 +207,6 @@ $(document).ready(function(){
         });
         
     }
-    
 
 
     //Click event to initialize movie/cocktail search
