@@ -45,7 +45,7 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                saveMovie(movieResponse);
+                movieId = data;
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -322,9 +322,17 @@ $(document).ready(function(){
 
 
 // Saving To Local Storage
-var saveButton = document.querySelector(".save-button")
+var saveButton = document.querySelector(".save-button");
+var movieId;
 
-function saveMovie(movieResponse) {
+function saveMovie(data) {
     // var movieId = movieResponse.results[movieIndex].id;
-    console.log(movieResponse);
+    movieId = data.results[0].id
+    console.log(movieId);
+    localStorage.setItem("movieId", JSON.stringify(movieId));
 };
+
+saveButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    saveMovie(movieId);
+});
