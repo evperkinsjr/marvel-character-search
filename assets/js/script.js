@@ -307,8 +307,6 @@ $(document).ready(function(){
 })
 
 
-<<<<<<< HEAD
-=======
 
 // Saving To Local Storage
 var saveButton = document.querySelector(".save-button");
@@ -343,4 +341,3 @@ saveButton.addEventListener("click", function(event) {
 });
 
 initSavedCombo();
->>>>>>> a08af2d74a11afb8dfa4060f667ba03fbd774e55
