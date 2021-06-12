@@ -7,15 +7,15 @@ $(document).ready(function(){
     var movieTitleDisplay = $('#movie-title');
     var movieImageDisplay = $('#movie-image');
     var movieDescDisplay = $('#movie-description');
+    var movieReleaseDateDisplay = $('#movie-release-date');
+    var movieRatingDisplay = $('#tmdb-user-rating');
     var cocktailTitleDisplay = $('#cocktail-title');
     var cocktailImageDisplay = $('#cocktail-image');
     var cocktailIngredientsDisplay = $('#cocktail-ingredients');
     var cocktailInstructionsDisplay = $('#cocktail-instructions');
-    var modalAlert = $('modal-alert');
-    var prevMovieBtn = $('#prev-movie-btn');
-    var nextMovieBtn = $('#next-movie-btn');
-    var prevCocktailBtn = $('#prev-cocktail-btn');
-    var nextCocktailBtn = $('#next-cocktail-btn');
+    var modalAlert = $('#modal-alert');
+    var newMovieBtn = $('#new-movie-btn');
+    var newCocktailBtn = $('#new-cocktail-btn');
     var genreId;
     var movieResponse;
     var movieIndex = 0;
@@ -66,11 +66,13 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
+        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieRatingDisplay.text(data.results[index].vote_average);
     }
 
     
     // Click event on the 'Next' movie button
-    nextMovieBtn.on('click', function(event) {
+    newMovieBtn.on('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
 
@@ -89,23 +91,6 @@ $(document).ready(function(){
         
 
 
-    // Click event on the 'Previous' movie button
-    prevMovieBtn.on('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        --movieIndex;
-
-        if (movieIndex >= 0) {
-            displayMovieDetails(movieResponse,movieIndex);
-        } else {
-            movieIndex=0;
-            //Create and append modal message for display - customize depending on where we are calling the modal from
-            modalAlert.addClass('is-active');
-
-        }
-    })
-
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
@@ -119,7 +104,7 @@ $(document).ready(function(){
     //Search cocktail API
 
     function getCocktail() {
-        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" + cocktailType;
+        var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
 
         fetch(drinkRequestUrl)
             .then(function(response) {
@@ -154,7 +139,7 @@ $(document).ready(function(){
         getDrinkDetails();
     }
     
-
+    // Search cocktail api to get full drink details
     function getDrinkDetails() {
         var drinkLookupUrl = "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + randomCocktail;
 
@@ -185,22 +170,15 @@ $(document).ready(function(){
 
             console.log(randomDetailsArray.drinks[cocktailIndex].strDrink);
             // Log the drink ingredients/measurements
+
+            // Attach cocktail info to page
             cocktailTitleDisplay.text(data.drinks[cocktailIndex].strDrink);
             cocktailImageDisplay.attr('src', data.drinks[cocktailIndex].strDrinkThumb);
             cocktailInstructionsDisplay.text(data.drinks[0].strInstructions);
         });
-
-        /* displayCocktailDetails(randomDetailsArray, cocktailIndex); */
         
     }
     
-    
-    // getCocktail('Alcoholic');
-    // getCocktail('Non_Alcoholic');
-    // Display cocktail details for initial search 
-    /* function displayCocktailDetails(data, index) {
-        
-    } */
 
 
     //Click event to initialize movie/cocktail search
@@ -221,39 +199,15 @@ $(document).ready(function(){
         getMovieByGenre();
         getCocktail();
     })
-    
-    // Click event handler for the'Previous' cocktail button
-    prevCocktailBtn.on('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-
-        --cocktailIndex;
-
-        if (cocktailIndex >= 0) {
-            displayCocktailDetails(cocktailType, cocktailIndex);
-        } else {
-            cocktailIndex=0;
-            //modal
-            modalAlert.addClass('is-active');
-        }
-    })
 
      // Click event handler for 'Next' cocktail button
-    nextCocktailBtn.on('click', function(event) {
+    newCocktailBtn.on('click', function(event) {
         event.preventDefault();
         event.stopPropagation();
 
-        ++cocktailIndex;
-        
-        if (cocktailIndex < 20) {
-            displayCocktailDetails(cocktailType, cocktailIndex);
-        } else {
-            
-            cocktailIndex=19;
-            //modal
-            modalAlert.addClass('is-active');
-        }
+        getCocktail();
     })
+
     function mapGenreNametoID (genreName) {
         switch (genreName) {
             case 'Action':
