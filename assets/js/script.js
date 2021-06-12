@@ -298,3 +298,10 @@ saveButton.addEventListener("click", function(event) {
 });
 
 initSavedCombo();
+
+
+//welcome overlay
+var Icon = $('#overlay');
+Icon.on('click', function(){
+    document.getElementById("overlay").style.display = "none";
+})
