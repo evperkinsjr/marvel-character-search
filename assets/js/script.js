@@ -26,7 +26,7 @@ $(document).ready(function(){
     var cocktailIndex = 0;
     var cocktailArray;
     var saveFavButton = $('#save-favorite-button');
-
+    var ingredientArray = [];
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
@@ -164,7 +164,6 @@ $(document).ready(function(){
             
             savDrinkTitle = data.drinks[0].strDrink;
             savDrinkInstr = data.drinks[0].strInstructions;
-            // savDrinkIngr = 
 
             randomDetailsArray = data;
             //  Sets drinkId to be used in Saving to Local Storage Function
@@ -198,11 +197,13 @@ $(document).ready(function(){
                 
                 var ingredientItem = document.createElement('li');
                 ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
-
-            
-
+                
+                ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
+                //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
-            }
+            }  
+            savDrinkIngr = ingredientArray;
+            console.log(savDrinkIngr);
 
         });
         
@@ -274,7 +275,7 @@ $(document).ready(function(){
             movieRelDate: savMovieRelDate,
             drinkTitle: savDrinkTitle,
             drinkInstr: savDrinkInstr,
-            // drinkIngr: savDrinkIngr,
+            drinkIngr: savDrinkIngr,
         } 
     favComboList.push(favCombo);
     localStorage.setItem("favComboList", JSON.stringify(favComboList));
