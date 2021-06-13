@@ -139,6 +139,167 @@ box-shadow: none;
         flex-direction: column;
         align-items: center;
     }
+<<<<<<< HEAD
+
+=======
+}
+
+    
+/*css for favourite page*/
+/**********************************************************************************************************************************************/
+/*main slider*/
+.for-all{
+    height:250px;
+    margin:auto;
+    position: relative;
+    width: 90%;
+    display:grid;
+    place-items: center;
+    overflow: hidden;
+}
+/*secondary slider*/
+.track{
+    display: flex;
+    width:calc(250px * 18);
+    animation:scroll 40s linear infinite ;
 
 }
 
+/*hover over secondary track effect*/
+.track:hover{
+    animation-play-state: paused;
+}
+
+/*image container*/
+.for-one{
+    height: 200px;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    perspective: 100px;
+}
+
+.images{
+    width: 100%;
+    border-radius: 5%;
+    transition: transform 1s;
+}
+
+/*effect when imag is hoverd*/
+.images:hover{
+    transform: translateZ(20px);
+}
+
+/*background gradient for shadow effect*/
+.for-all::before,
+.for-all::after{
+    background:linear-gradient(to right,rgba(255,255,255,1)0%, rgba(255,255,255,0)100% );
+    content: '';
+    height: 100%;
+    position: absolute;
+    width: 15%;
+    z-index:2;
+
+}
+
+/*effect before and after image enter view*/
+.for-all::before{
+    left:0;
+    top: 0;
+}
+
+.for-all::after{
+    right:0;
+    top:0;
+    transform: rotateZ(180deg);
+}
+
+
+
+/*these key frame ceate animation, in this case infinite slide*/
+@keyframes scroll{
+    0%{
+        transform: translateX(0);
+    }
+    100%{
+        transform: translateX(calc(-250 * 9));
+    }
+}
+
+@keyframes scroll{
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-1692px, 0, 0);
+  }
+>>>>>>> bc44e2f326f3380c4f280f8c54448eab91ad2f76
+}
+
+
+/*styling for modal*/
+
+.modal-content{
+    text-align: center;
+}
+
+#modal-text{
+    text-align: center;
+    background-color:rgb(184, 74, 74);
+    padding: 10px 0;
+    color:white;
+
+}
+
+
+
+/*collasing display*/
+
+
+/*overlay*/
+#overlay {
+  position: fixed; 
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  transition: 3s;
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+#text{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color:rgb(184, 74, 74);
+  transform: translate(-55%,-45%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#genreanddrink{
+    font-size: 24px;
+}
+
+.modal-content{
+    text-align: center;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.black{
+    background-color: black;
+    width: 100%;
+}
+
+#main{
+    visibility:hidden;
+}

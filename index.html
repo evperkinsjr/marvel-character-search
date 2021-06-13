@@ -13,10 +13,25 @@
         <link rel="stylesheet" href="assets/css/style.css"/>
         <!-- Font Family Style Link -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
     </head>
+
     <body>
+
+        <!--overlay-->
+        <div id="overlay">
+            <div id="text">
+                <div class="black"></div>
+                <h1>welcome</h1>
+                <h1 id="genreanddrink">Please select a movie genre and drink type</h1>
+                <span class="icon">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+
+            </div>
+        </div>
+
+
 
         <!--Header/Navbar-->
         <nav class="navbar is-centered is-flex is-justify-content-space-between">
@@ -41,7 +56,6 @@
                 </button>
             </div>
         </nav>  
-
         <main>
             <!--Row for Dropdowns and Roulette Button-->
             <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
@@ -58,7 +72,6 @@
                         <option value='10749'>Romance</option>
                     </select>
                 </div>
-
                 <!--Dropdown for Drinks-->
                 <div class="select">
                     <select id="cocktail-input">
@@ -73,7 +86,6 @@
                         <option value='i=Vodka'>Vodka</option>
                     </select>           
                 </div>
-
                 <!--Roulette Button-->   
                 <div class="submit-button is-hovered">
                     <button class="button" id="submit-btn">Submit</button>
@@ -83,10 +95,8 @@
                     <button class="button" id="save-favorite-button">Save to Favorites</button>
                 </div>    
             </form>
-
             <!--Section for generated Movie and Drink-->
             <div class="columns">
-
                 <!--Card for Movie-->
                 <div class="column card">
                     <!--Movie Title-->
@@ -131,10 +141,8 @@
                                 <button class="button card-footer-item" id="new-movie-btn">New Movie</button>
                             </footer>
                         </div>
- 
                     </div>
                 </div>
-
                 <!--Card for Drink-->
                 <div class="column card">
                     <!--Drink Name-->
@@ -177,20 +185,28 @@
                     </div>
                 </div>
             </div>
-             
-        </main>
-
+        
         <footer class='credits'>
+            <br>
             <p>Credits:</p>
             <p>Movie details sourced from TMDb API.</p>
             <p>Cocktail details sourced from the Cocktail DB API.</p>
         </footer>
-        
-        <!--Modal for alerts-->
-        <div class="modal" id="modal-alert">
+
+         <div class="modal" id="modal-alert">
             <div class="modal-background"></div>
-            <div class="modal-content">
-            <p id="modal-text"></p>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>your choice list is comlete</h1></p>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+
+        <div class="modal" id="second-modal-alert">
+            <div class="modal-background"></div>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>return</h1></p>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
