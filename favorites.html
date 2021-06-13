@@ -5,23 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorites</title>
-     <!--Link to Bulma(CSS)-->
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
-     <!--Font Awesome-->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-     <!--Style CSS-->
-     <link rel="stylesheet" href="./assets/css/glide.core.min.css">
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.theme.min.css">
-
-
+    <!--Link to Bulma(CSS)-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
+    <!-- Link to Font Family Stylesheet -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
 
      <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
     <main>
     <!--Header/Navbar-->
-        <nav class="navbar is-spaced is-justify-content-space-between">
+        <nav class="navbar is-centered is-flex is-justify-content-space-between">
             <!--Logo-->
             <div class="navbar-brand">
                 <a class="navbar-item">
@@ -30,11 +25,12 @@
                 </a>
             </div>
             <!--Title-->
-            <div class="navbar-item githeader-title">Favorites Page</div>
+            <div class="navbar-item header-title">
+                <h1 class="main-title">Favorites Page</h1>
+            </div>
             <!--Favorites Page Button-->
-    
-            i        <div class="navbar-item home-button">
-                <button class="button is-large" onclick="window.location.href = './index.html';">
+                <div class="navbar-item home-button">
+                <button class="button is-dark is-focused" onclick="window.location.href = './index.html';">
                     <span class="icon is-medium">
                         <i class="fas fa-home"></i>
                     </span>
@@ -42,14 +38,17 @@
                 </button>
             </div>
         </nav>
+
     <!--movie container-->
 
     <section id=“”>
-        <div id=“”>
-            <h3>Movie Title</h3>
+        <h3>Movie Title</h3>
+        <div id=“movie-list”>
+
+        </div>    
     </section>
 
-<!--drink container-->
+    <!--drink container-->
     <section id=“”>
         <div id=“”>
             <h3>Cocktail Title</h3>
@@ -57,14 +56,17 @@
     </section>
 
 
-</main> 
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script>
-  new Glide('.glide').mount()
-  </script>
+</main>
 
+    
 
- 
-<script src="assets/js/script.js"></script>
-</body>
+    </body>
+    <!--link to jquery library-->
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous">
+    </script>
+    <!--Linkt to Javascript-->
+    <script src="assets/js/script.js" defer></script>
 </html>
