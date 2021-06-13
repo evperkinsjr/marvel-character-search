@@ -72,7 +72,7 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
-        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieReleaseDateDisplay.text(moment(data.results[index].release_date).format("MMMM Do, YYYY"));
         movieRatingDisplay.text(data.results[index].vote_average);
     }
 
@@ -193,13 +193,18 @@ $(document).ready(function(){
             for(var i=1; i<16; i++) {
                 console.log();
 
-                if(data.drinks[0][`strIngredient${i}`] == null){
+                if(data.drinks[0][`strIngredient${i}`] === null || data.drinks[0][`strIngredient${i}`]===""){
                     break;
                 }
                 
                 var ingredientItem = document.createElement('li');
-                ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
-                
+
+                if (data.drinks[0][`strMeasure${i}`]!== null) {
+                    ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+                } else {
+                    ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
+                }
+               
                 ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
                 //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
