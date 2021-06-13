@@ -217,7 +217,12 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
+<<<<<<< Updated upstream
             modalText.text("Please select a movie genre and drink type.")
+=======
+        /*modalText.text("Please select a movie genre and drink type.");*/
+            
+>>>>>>> Stashed changes
             return;
         }
 

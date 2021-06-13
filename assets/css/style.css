@@ -138,7 +138,7 @@ box-shadow: none;
     }
 }
 
-    
+/*    
 /*css for favourite page*/
 /**********************************************************************************************************************************************/
 /*main slider*/
@@ -229,7 +229,7 @@ box-shadow: none;
     transform: translate3d(-1692px, 0, 0);
   }
 }
-
+*/
 
 
 
@@ -316,6 +316,7 @@ h1,h2{
     color: rgb(184, 74, 74);
     font-size:  48px;
     text-align: center;
+<<<<<<< Updated upstream
     text-transform: capitalize;
 
 }
@@ -329,3 +330,40 @@ h2{
     background-color:rgb(184, 74, 74) ;
 
 }*/
+=======
+    background-color:rgb(184, 74, 74);
+    padding: 10px 0;
+    color:white;
+}
+
+
+/*overlay*/
+#overlay {
+  position: fixed; /* Sit on top of the page content */
+  display:; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black; /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+#text{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color:rgb(184, 74, 74);
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#genreanddrink{
+    font-size: 24px;
+}
+>>>>>>> Stashed changes
