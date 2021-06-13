@@ -156,7 +156,9 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
+                    var secondModalAlert = $('second-modal-alert')
+                    secondModalAlert.addClass('is-active');
+                
                 }
         })
         .then(function(data) {
