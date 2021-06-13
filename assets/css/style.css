@@ -139,9 +139,7 @@ box-shadow: none;
         flex-direction: column;
         align-items: center;
     }
-<<<<<<< HEAD
 
-=======
 }
 
     
@@ -234,7 +232,6 @@ box-shadow: none;
   100%{
     transform: translate3d(-1692px, 0, 0);
   }
->>>>>>> bc44e2f326f3380c4f280f8c54448eab91ad2f76
 }
 
 
