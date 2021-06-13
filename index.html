@@ -21,8 +21,13 @@
         <!--overlay-->
         <div id="overlay">
             <div id="text">
+                <div class="black"></div>
                 <h1>welcome</h1>
                 <h1 id="genreanddrink">Please select a movie genre and drink type</h1>
+                <span class="icon">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+
             </div>
         </div>
 
@@ -51,11 +56,11 @@
             </div>
         </nav>  
 
-        <main>
+        <main id="main">
             <!--Row for Dropdowns and Roulette Button-->
             <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
                 <!--Dropdown for Genre-->
-                <div class="select">
+                <div class="select is-danger">
                     <select id="genre-input">
                         <option value="" disabled selected>Pick a Genre</option>
                         <option value='28'>Action</option>
@@ -69,7 +74,7 @@
                 </div>
 
                 <!--Dropdown for Drinks-->
-                <div class="select">
+                <div class="select is-danger">
                     <select id="cocktail-input">
                         <option value="" disabled selected>Pick a Drink Type</option>
                         <option value='i=Bourbon'>Bourbon</option>
@@ -198,11 +203,26 @@
         
         <div class="modal" id="modal-alert">
             <div class="modal-background"></div>
-            <div class="modal-content">
-            <p id="modal-text"></p>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>your choice list is comlete</h1></p>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
+
+
+
+        <div class="modal" id="second-modal-alert">
+            <div class="modal-background"></div>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>return</h1></p>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+
+
+
+
+
 
     </main>
     <!--link to jquery library-->

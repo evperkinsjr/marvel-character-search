@@ -156,7 +156,8 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
+                    var secondModalAlert = $('second-modal-alert')
+                    secondModalAlert.addClass('is-active');
                 }
         })
         .then(function(data) {
@@ -217,12 +218,8 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-<<<<<<< Updated upstream
-            modalText.text("Please select a movie genre and drink type.")
-=======
         /*modalText.text("Please select a movie genre and drink type.");*/
             
->>>>>>> Stashed changes
             return;
         }
 
@@ -306,7 +303,11 @@ initSavedCombo();
 
 
 //welcome overlay
+var Main = $('#main')
 var Icon = $('#overlay');
 Icon.on('click', function(){
     document.getElementById("overlay").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+
+
 })
