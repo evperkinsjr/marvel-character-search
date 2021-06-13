@@ -299,3 +299,14 @@ saveButton.addEventListener("click", function(event) {
 });
 
 initSavedCombo();
+
+
+//welcome overlay
+var Main = $('#main')
+var Icon = $('#overlay');
+Icon.on('click', function(){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+
+
+})
