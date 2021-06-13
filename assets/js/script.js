@@ -156,7 +156,9 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
+                    var secondModalAlert = $('second-modal-alert')
+                    secondModalAlert.addClass('is-active');
+                
                 }
         })
         .then(function(data) {
@@ -208,8 +210,8 @@ $(document).ready(function(){
         });
         
     }
-    
-
+    //variable for modal text
+        
 
     //Click event to initialize movie/cocktail search
     submitBtn.on('click', function(event){
@@ -218,7 +220,8 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-            modalText.text("Please select a movie genre and drink type.")
+           modalText.text("Please select a movie genre and drink type.");
+            
             return;
         }
 
@@ -295,6 +298,18 @@ $(document).ready(function(){
      });
 
 
+initSavedCombo();
+
+
+//welcome overlay
+var Main = $('#main')
+var Icon = $('#overlay');
+Icon.on('click', function(){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+
+
+})
 
     var movieList = document.getElementById("movie-list"); 
 
