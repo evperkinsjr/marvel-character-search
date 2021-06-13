@@ -72,7 +72,7 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
-        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieReleaseDateDisplay.text(moment(data.results[index].release_date).format("MMMM Do, YYYY"));
         movieRatingDisplay.text(data.results[index].vote_average);
     }
 
