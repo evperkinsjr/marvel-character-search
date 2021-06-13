@@ -242,4 +242,57 @@ box-shadow: none;
     background-color:rgb(184, 74, 74);
     padding: 10px 0;
     color:white;
+
+}
+
+
+
+/*collasing display*/
+
+
+/*overlay*/
+#overlay {
+  position: fixed; 
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  transition: 3s;
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+#text{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color:rgb(184, 74, 74);
+  transform: translate(-55%,-45%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#genreanddrink{
+    font-size: 24px;
+}
+
+.modal-content{
+    text-align: center;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.black{
+    background-color: black;
+    width: 100%;
+}
+
+#main{
+    visibility:hidden;
 }
