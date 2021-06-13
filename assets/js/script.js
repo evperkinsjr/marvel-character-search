@@ -192,13 +192,17 @@ $(document).ready(function(){
             for(var i=1; i<16; i++) {
                 console.log();
 
-                if(data.drinks[0][`strIngredient${i}`] == null){
+                if(data.drinks[0][`strIngredient${i}`] === null || data.drinks[0][`strIngredient${i}`]===""){
                     break;
                 }
                 
                 var ingredientItem = document.createElement('li');
-                ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
 
+                if (data.drinks[0][`strMeasure${i}`]!== null) {
+                    ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+                } else {
+                    ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
+                }
             
 
                 cocktailIngredientsDisplay.append(ingredientItem);
