@@ -321,7 +321,7 @@ $(document).ready(function(){
         console.log(driInstr);
         
 
-        $(".movie-list").append();
+        $(".movie-list").append(document.createElement('p', movTitle));
         }   
     }   
 
