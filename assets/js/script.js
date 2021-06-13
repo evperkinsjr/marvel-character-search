@@ -250,24 +250,24 @@ $(document).ready(function(){
     function removeIngredients(parent) {
         $(parent).empty();
     }
-})
+
 
 
 // Saving To Local Storage
-var saveButton = document.querySelector(".save-button");
-var movieId;
-var drinkId;
-var savMovieTitle;
-var savMovieTitle;
-var savMovieDesc;
-var savMovieRelDate;
-var favComboList = []
-      
+    var saveButton = document.querySelector(".save-button");
+    var movieId;
+    var drinkId;
+    var savMovieTitle;
+    var savMovieTitle;
+    var savMovieDesc;
+    var savMovieRelDate;
+    var favComboList = []
+        
     // Function to save movieId AND drinkId
-function saveCombo() {
+    function saveCombo() {
     console.log(movieId);
     console.log(drinkId);
-    
+
     var favCombo = {
             movieTitle: savMovieTitle,
             movieDesc: savMovieDesc,
@@ -278,23 +278,53 @@ function saveCombo() {
         } 
     favComboList.push(favCombo);
     localStorage.setItem("favComboList", JSON.stringify(favComboList));
-}
+    }
+    
     // Function to get saved combos from local storage
-function initSavedCombo() {
+    function initSavedCombo() {
     var storedCombo = localStorage.getItem('favComboList');
     if (storedCombo) {
         favComboList = JSON.parse(storedCombo);
     }
-}
-
-    // Event listener for button to save movie and drink Id's to local storage
-saveButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    saveCombo();
-
-    if (movieId === undefined || drinkId === undefined) {
-        return;
     }
-});
 
-initSavedCombo();
+    $(document).on("click", ".save-button", function(event){
+        event.preventDefault();
+        saveCombo();
+     });
+
+
+
+    var movieList = document.getElementById("movie-list"); 
+
+    // Function to Display saved combos to Favorites Page
+    function renderSavedCombos () {
+    
+        for (var i = 0; i < favComboList.length; i++) {
+        var savedComboOption = JSON.parse(localStorage.getItem("favComboList"));
+
+        // var listItem = document.createElement('p');
+        // listItem.textContent = savedComboOption[i].movieTitle;
+        // console.log(listItem);
+
+        var movTitle = savedComboOption[i].movieTitle;
+        var relDate = savedComboOption[i].movieRelDate;
+        var desc = savedComboOption[i].movieDesc;
+        var driTitle = savedComboOption[i].drinkTitle;
+        var driInstr = savedComboOption[i].drinkInstr;
+
+        console.log(movTitle);
+        console.log(relDate);
+        console.log(desc);
+        console.log(driTitle);
+        console.log(driInstr);
+        
+
+        $(".movie-list").append();
+        }   
+    }   
+
+    initSavedCombo();
+    renderSavedCombos();
+
+})
