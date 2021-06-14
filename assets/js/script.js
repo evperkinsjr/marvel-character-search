@@ -27,8 +27,9 @@ $(document).ready(function(){
     var cocktailArray;
     var saveFavButton = $('#save-favorite-button');
     var movieDrinkCards = $('#cards');
-    var introCard = $('intro-card');
+   /*  var introCard = $('intro-card'); */
 
+    var ingredientArray = [];
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
@@ -74,7 +75,7 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
-        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieReleaseDateDisplay.text(moment(data.results[index].release_date).format("MMMM Do, YYYY"));
         movieRatingDisplay.text(data.results[index].vote_average);
     }
 
@@ -158,7 +159,9 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
+                    var secondModalAlert = $('second-modal-alert')
+                    secondModalAlert.addClass('is-active');
+                
                 }
         })
         .then(function(data) {
@@ -166,7 +169,6 @@ $(document).ready(function(){
             
             savDrinkTitle = data.drinks[0].strDrink;
             savDrinkInstr = data.drinks[0].strInstructions;
-            // savDrinkIngr = 
 
             randomDetailsArray = data;
             //  Sets drinkId to be used in Saving to Local Storage Function
@@ -194,23 +196,30 @@ $(document).ready(function(){
             for(var i=1; i<16; i++) {
                 console.log();
 
-                if(data.drinks[0][`strIngredient${i}`] == null){
+                if(data.drinks[0][`strIngredient${i}`] === null || data.drinks[0][`strIngredient${i}`]===""){
                     break;
                 }
                 
                 var ingredientItem = document.createElement('li');
-                ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
 
-            
-
+                if (data.drinks[0][`strMeasure${i}`]!== null) {
+                    ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+                } else {
+                    ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
+                }
+               
+                ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
+                //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
-            }
+            }  
+            savDrinkIngr = ingredientArray;
+            console.log(savDrinkIngr);
 
         });
         
     }
-    
-
+    //variable for modal text
+        
 
     //Click event to initialize movie/cocktail search
     submitBtn.on('click', function(event){
@@ -219,7 +228,8 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-            modalText.text("Please select a movie genre and drink type.")
+           modalText.text("Please select a movie genre and drink type.");
+            
             return;
         }
 
@@ -236,7 +246,7 @@ $(document).ready(function(){
         getMovieByGenre();
         getCocktail();
 
-        document.getElementById("intro-card").style.display = "none";
+        /* document.getElementById("intro-card").style.display = "none"; */
 
         document.getElementById("save-favorite-button").style.display = "block";
 
@@ -256,51 +266,93 @@ $(document).ready(function(){
     function removeIngredients(parent) {
         $(parent).empty();
     }
-})
+
 
 
 // Saving To Local Storage
-var saveButton = document.querySelector(".save-button");
-var movieId;
-var drinkId;
-var savMovieTitle;
-var savMovieTitle;
-var savMovieDesc;
-var savMovieRelDate;
-var favComboList = []
-      
+    var saveButton = document.querySelector(".save-button");
+    var movieId;
+    var drinkId;
+    var savMovieTitle;
+    var savMovieTitle;
+    var savMovieDesc;
+    var savMovieRelDate;
+    var favComboList = []
+        
     // Function to save movieId AND drinkId
-function saveCombo() {
+    function saveCombo() {
     console.log(movieId);
     console.log(drinkId);
-    
+
     var favCombo = {
             movieTitle: savMovieTitle,
             movieDesc: savMovieDesc,
             movieRelDate: savMovieRelDate,
             drinkTitle: savDrinkTitle,
             drinkInstr: savDrinkInstr,
-            // drinkIngr: savDrinkIngr,
+            drinkIngr: savDrinkIngr,
         } 
     favComboList.push(favCombo);
     localStorage.setItem("favComboList", JSON.stringify(favComboList));
-}
+    }
+    
     // Function to get saved combos from local storage
-function initSavedCombo() {
+    function initSavedCombo() {
     var storedCombo = localStorage.getItem('favComboList');
     if (storedCombo) {
         favComboList = JSON.parse(storedCombo);
     }
-}
-
-    // Event listener for button to save movie and drink Id's to local storage
-saveButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    saveCombo();
-
-    if (movieId === undefined || drinkId === undefined) {
-        return;
     }
-});
+
+    $(document).on("click", ".save-button", function(event){
+        event.preventDefault();
+        saveCombo();
+     });
+
 
 initSavedCombo();
+
+
+//welcome overlay
+var Main = $('#main')
+var Icon = $('#overlay');
+Icon.on('click', function(){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+
+
+})
+
+    var movieList = document.getElementById("movie-list"); 
+
+    // Function to Display saved combos to Favorites Page
+    function renderSavedCombos () {
+    
+        for (var i = 0; i < favComboList.length; i++) {
+        var savedComboOption = JSON.parse(localStorage.getItem("favComboList"));
+
+        // var listItem = document.createElement('p');
+        // listItem.textContent = savedComboOption[i].movieTitle;
+        // console.log(listItem);
+
+        var movTitle = savedComboOption[i].movieTitle;
+        var relDate = savedComboOption[i].movieRelDate;
+        var desc = savedComboOption[i].movieDesc;
+        var driTitle = savedComboOption[i].drinkTitle;
+        var driInstr = savedComboOption[i].drinkInstr;
+
+        console.log(movTitle);
+        console.log(relDate);
+        console.log(desc);
+        console.log(driTitle);
+        console.log(driInstr);
+        
+
+        $(".movie-list").append();
+        }   
+    }   
+
+    initSavedCombo();
+    renderSavedCombos();
+
+})
