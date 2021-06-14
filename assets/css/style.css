@@ -27,6 +27,44 @@ body, html {
     background-color: var(--body-color);
     font-family: 'Josefin Sans', sans-serif;}
 
+/* Overlay and Intro Card */
+#overlay {
+    position: fixed; 
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    transition: 3s;
+    transition-property: all;
+    transition-duration: 0.5s;
+  }
+
+#intro-card {
+    text-align: center;
+    margin: 10px 18%;
+    padding-top: 8%;
+}
+
+#intro-header {
+    margin: 0 auto;
+}
+
+#instructions {
+    text-align: left;
+    list-style-type: disc;
+    margin-left: 10px;
+}
+
+#main {
+    visibility:hidden;
+}
+
+
 /* Style for Navbar */
 .navbar {
     background-color: var(--black);
@@ -73,9 +111,10 @@ input, .select select, .textarea  {
     margin-bottom: 10px;
 }
 
-#save-favorite-button {
-    visibility: hidden;
+#cards, #save-favorite-button {
+    display: none;
 }
+
 /* Style for Card Container */
 .columns {
     margin-top: 0;
@@ -85,7 +124,8 @@ input, .select select, .textarea  {
 
 /*Movie,Cocktail Title*/
 #movie-title,
-#cocktail-title {
+#cocktail-title,
+#intro-title {
     padding-top:10px;
     line-height:35px;
 }
@@ -111,16 +151,19 @@ input, .select select, .textarea  {
 .icon-text{
     align-items: baseline;
 }
-.card {
+.card, #intro-card {
 background-color: var(--card);
 }
+
 .card-header-title {
 font-weight: 600;
 }
+
 .card-content {
 padding: 0;
 box-shadow: none;
 }
+
 .card-footer-item {
     margin-top: 10px;
 }
@@ -254,49 +297,9 @@ box-shadow: none;
 /*collasing display*/
 
 
-/*overlay*/
-#overlay {
-  position: fixed; 
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: black;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer;
-  transition: 3s;
-  transition-property: all;
-  transition-duration: 0.5s;
-}
-
-#text{
-  position: absolute;
-  text-align: center;
-  top: 50%;
-  left: 50%;
-  font-size: 50px;
-  color:rgb(184, 74, 74);
-  transform: translate(-55%,-45%);
-  -ms-transform: translate(-50%,-50%);
-}
-
-#genreanddrink{
-    font-size: 24px;
-}
 
 .modal-content{
     text-align: center;
     font-size: 24px;
     text-transform: capitalize;
-}
-
-.black{
-    background-color: black;
-    width: 100%;
-}
-
-#main{
-    visibility:hidden;
 }

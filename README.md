@@ -1,26 +1,37 @@
-# <h1>The Movie Drink Roulette</h1>
+# Movie Drink Roulette
 
-## Description <p>This app is a simple user friendly application as that displays the latest movies, thier title and description. It also displays alcohol and non - alcoholic beverage at the users choice. The drink menu diplays : type of drink, ingridients and ratings.  The app displays a faourites which stores data and relays back this information to the user </p>
+## Description
+We created a movie night application that provides the user with a movie and drink recommendation based on their selections. Here's how this application works:
 
-<h1>features include:<h1>
-<li>movie display and description</li> 
-<li>choice list for movies</li> 
-<li>choice drink list</li>  
-<li>Recycler for choice list  </li>
-<li>live data</li>
+1. User selects a movie genre AND a drink type.
+2. When the user clicks the submit button, they're presented with the most popular movie in the genre and a random drink in their selected type.
+3. If the user wants a different movie in the genre, they can click the "New Movie" button.
+4. If the user wants a different drink in the same category, they can click the "New Drink" button.
+5. When the user finds a pair they like, they can click the "Save to Favorites" button so save them to localStorage.
+6. Saved combinations can be found on the "Favorites" page.
 
-
-
-Link to live application: [Marvel Character Search](#)
-
-## Screenshot
+Link to live application: [Movie Drink Roulette](https://evperkinsjr.github.io/movie-drink-roulette/)
 
 
-## Technologies Used 
-#<h1> Html,css,javaScript</h1>
-#<h1>tmbd API</h1>
-#<h1>cocktail API</h1>
-#<h1>external  APIs<h1>
-<h2>
+## Mock-Up
+The following image shows the web application's appearance and functionality:
 
+![Movie Drink Roulette](#)
+
+<p>&nbsp</p>
+
+## Contributors
+- [Joshua Gonzalez](https://github.com/jalgonz)
+- [Aldaine Knight](https://github.com/luvkil)
+- [Elizabeth Mangano](https://github.com/emangano2816)
+- [Omar Nava](https://github.com/omar-94)
+- [Enrico Perkins](https://github.com/evperkinsjr)
+
+<p>&nbsp</p>
+
+## Technologies Used
 - HTML
+- CSS
+- Javascript
+- Bulma (CSS Framework)
+- jQuery
