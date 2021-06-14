@@ -47,11 +47,6 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                // Sets movieId to be used in Local Storage Function 
-                movieId = data.results[0].id;
-                savMovieTitle = data.results[0].title
-                savMovieDesc = data.results[0].overview
-                savMovieRelDate = data.results[0].release_date
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
@@ -72,8 +67,14 @@ $(document).ready(function(){
         movieTitleDisplay.text(data.results[index].title);
         movieDescDisplay.text(data.results[index].overview);
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
-        movieReleaseDateDisplay.text(data.results[index].release_date);
+        movieReleaseDateDisplay.text(moment(data.results[index].release_date).format("MMMM Do, YYYY"));
         movieRatingDisplay.text(data.results[index].vote_average);
+
+        // Sets movieId to be used in Local Storage Function 
+        movieId = data.results[index].id;
+        savMovieTitle = data.results[index].title
+        savMovieDesc = data.results[index].overview
+        savMovieRelDate = data.results[index].release_date
     }
 
     
@@ -156,7 +157,9 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    modalAlert.addClass('is-active');
+                    var secondModalAlert = $('second-modal-alert')
+                    secondModalAlert.addClass('is-active');
+                
                 }
         })
         .then(function(data) {
@@ -191,13 +194,18 @@ $(document).ready(function(){
             for(var i=1; i<16; i++) {
                 console.log();
 
-                if(data.drinks[0][`strIngredient${i}`] == null){
+                if(data.drinks[0][`strIngredient${i}`] === null || data.drinks[0][`strIngredient${i}`]===""){
                     break;
                 }
                 
                 var ingredientItem = document.createElement('li');
-                ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
-                
+
+                if (data.drinks[0][`strMeasure${i}`]!== null) {
+                    ingredientItem.innerHTML = data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`];
+                } else {
+                    ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
+                }
+               
                 ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
                 //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
@@ -208,8 +216,8 @@ $(document).ready(function(){
         });
         
     }
-    
-
+    //variable for modal text
+        
 
     //Click event to initialize movie/cocktail search
     submitBtn.on('click', function(event){
@@ -218,7 +226,8 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-            modalText.text("Please select a movie genre and drink type.")
+           modalText.text("Please select a movie genre and drink type.");
+            
             return;
         }
 
@@ -255,10 +264,9 @@ $(document).ready(function(){
 
 
 // Saving To Local Storage
-    var saveButton = document.querySelector(".save-button");
-    var movieId;
+
+    var movieId ;
     var drinkId;
-    var savMovieTitle;
     var savMovieTitle;
     var savMovieDesc;
     var savMovieRelDate;
@@ -279,8 +287,15 @@ $(document).ready(function(){
         } 
     favComboList.push(favCombo);
     localStorage.setItem("favComboList", JSON.stringify(favComboList));
+
+    renderSavedCombos();
     }
-    
+
+     $(document).on("click", ".save-button", function(event){
+        event.preventDefault();
+        saveCombo();
+     });
+
     // Function to get saved combos from local storage
     function initSavedCombo() {
     var storedCombo = localStorage.getItem('favComboList');
@@ -289,39 +304,54 @@ $(document).ready(function(){
     }
     }
 
-    $(document).on("click", ".save-button", function(event){
-        event.preventDefault();
-        saveCombo();
-     });
+   
 
 
+initSavedCombo();
 
-    var movieList = document.getElementById("movie-list"); 
+
+//welcome overlay
+var Main = $('#main')
+var Icon = $('#overlay');
+Icon.on('click', function(){
+    document.getElementById("overlay").style.display = "none";
+    document.getElementById("main").style.visibility = "visible";
+
+
+})
+
 
     // Function to Display saved combos to Favorites Page
     function renderSavedCombos () {
-    
+
         for (var i = 0; i < favComboList.length; i++) {
         var savedComboOption = JSON.parse(localStorage.getItem("favComboList"));
 
-        // var listItem = document.createElement('p');
+        // var listItem = document.createElement('h1');
         // listItem.textContent = savedComboOption[i].movieTitle;
         // console.log(listItem);
 
-        var movTitle = savedComboOption[i].movieTitle;
-        var relDate = savedComboOption[i].movieRelDate;
-        var desc = savedComboOption[i].movieDesc;
-        var driTitle = savedComboOption[i].drinkTitle;
-        var driInstr = savedComboOption[i].drinkInstr;
+        var movTitle = $('<h2>').text(savedComboOption[i].movieTitle);
+        var relDate = $('<h2>').text(savedComboOption[i].movieRelDate);
+        var descr = $('<p>').text(savedComboOption[i].movieDesc);
+        var driTitle = $('<h2>').text(savedComboOption[i].drinkTitle);
+        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr)
+        var driInstr = $('<p>').text(savedComboOption[i].drinkInstr);
+        var breakSpace = $('<br>');
 
         console.log(movTitle);
         console.log(relDate);
-        console.log(desc);
+        console.log(descr);
         console.log(driTitle);
         console.log(driInstr);
-        
 
-        $(".movie-list").append(document.createElement('p', movTitle));
+        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        
+        $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
+        $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
+
+        
         }   
     }   
 

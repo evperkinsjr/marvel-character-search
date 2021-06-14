@@ -15,7 +15,22 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Limelight&display=swap" rel="stylesheet">
     </head>
+
     <body>
+
+        <!--overlay-->
+        <div id="overlay">
+            <div id="text">
+                <div class="black"></div>
+                <h1>welcome</h1>
+                <h1 id="genreanddrink">Please select a movie genre and drink type</h1>
+                <span class="icon">
+                  <i class="fas fa-arrow-right"></i>
+                </span>
+            </div>
+        </div>
+
+
 
         <!--Header/Navbar-->
         <nav class="navbar is-centered is-flex is-justify-content-space-between">
@@ -41,7 +56,7 @@
             </div>
         </nav>  
 
-        <main>
+        <main id="main">
             <!--Row for Dropdowns and Roulette Button-->
             <form class="searchbar is-flex is-justify-content-center is-flex-wrap-wrap">
                 <!--Dropdown for Genre-->
@@ -57,7 +72,6 @@
                         <option value='10749'>Romance</option>
                     </select>
                 </div>
-
                 <!--Dropdown for Drinks-->
                 <div class="select">
                     <select id="cocktail-input">
@@ -72,7 +86,6 @@
                         <option value='i=Vodka'>Vodka</option>
                     </select>           
                 </div>
-
                 <!--Roulette Button-->   
                 <div class="submit-button is-hovered">
                     <button class="button" id="submit-btn">Submit</button>
@@ -82,10 +95,9 @@
                     <button class="button" id="save-favorite-button">Save to Favorites</button>
                 </div>    
             </form>
-
+            
             <!--Section for generated Movie and Drink-->
             <div class="columns">
-
                 <!--Card for Movie-->
                 <div class="column card">
                     <!--Movie Title-->
@@ -130,10 +142,8 @@
                                 <button class="button card-footer-item" id="new-movie-btn">New Movie</button>
                             </footer>
                         </div>
- 
                     </div>
                 </div>
-
                 <!--Card for Drink-->
                 <div class="column card">
                     <!--Drink Name-->
@@ -176,34 +186,49 @@
                     </div>
                 </div>
             </div>
-             
-        </main>
-
+        
         <footer class='credits'>
             <br>
             <p>Credits:</p>
             <p>Movie details sourced from TMDb API.</p>
             <p>Cocktail details sourced from the Cocktail DB API.</p>
         </footer>
-        
-        
-        <div class="modal" id="modal-alert">
+
+         <div class="modal" id="modal-alert">
             <div class="modal-background"></div>
-            <div class="modal-content">
-            <p id="modal-text"></p>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>your choice list is comlete</h1></p>
             </div>
             <button class="modal-close is-large" aria-label="close"></button>
         </div>
 
-       
-    <!--link to jquery library-->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous">
-    </script>
-    <!--Linkt to Javascript-->
-    <script src="assets/js/script.js" defer></script>
-        </main>
+
+
+        <div class="modal" id="second-modal-alert">
+            <div class="modal-background"></div>
+            <div class="modal-content has-background-white py-5 px-6">
+            <p id="modal-text"><h1>return</h1></p>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+           
+        <!--Link to jquery library-->
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+        </script>
+
+        <!--Link to moment.js library-->
+        <script 
+            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" 
+            integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer">
+        </script>
+
+        <!--Link to Javascript-->
+        <script src="assets/js/script.js"></script>
     </body>
+
 </html>

@@ -1,16 +1,19 @@
 /* Color Pallete */
 :root {
-    --brand-color: #8C2559;
-    --light-accent: #B97B73;
-    --dark-accent: #7A7394;
-    --white: #EDE0D8;
-    --black: #1D1B23;
+    --button-color: #575757;
+    --body-color: grey;
+    --input-color: #363636;
+    --white: white;
+    --black: black;
+    --highlight: yellow;
+    --card: beige;
+    --pop: rgb(184, 74, 74);
 }
 
 /* Universal */
 .button {
-    background-color: #575757;
-    color: white;
+    background-color: var(--button-color);
+    color: var(--white);
     border: none;
     border-radius: 5px;
     font-family: 'Josefin Sans', sans-serif;
@@ -21,28 +24,28 @@ select {
 
 /* Style for Body */
 body, html {
-    background-color: grey;
+    background-color: var(--body-color);
     font-family: 'Josefin Sans', sans-serif;}
 
 /* Style for Navbar */
 .navbar {
-    background-color: black;
+    background-color: var(--black);
     margin-left: auto;
-    box-shadow: 0px 1px 10px black;
+    box-shadow: 0px 1px 10px var(--black);
 }
 .header-title {
-    color: rgb(184, 74, 74);
+    color: var(--pop);
     font-size: 4.5vw;
 }
 .navbar-item img {
     min-width: 1em;
     min-height: 4em;
     object-fit: cover;
-    background-color: gray;
+    background-color: var(--body-color);
 }
 .main-title {
     font-family: 'Limelight', cursive;
-    text-shadow: 2px 2px 5px yellow;
+    text-shadow: 2px 2px 5px var(--highlight);
 }
 
 
@@ -52,8 +55,8 @@ body, html {
     padding-bottom: 20px;
 }
 input, .select select, .textarea  {
-    background-color: #363636;
-    color: white;
+    background-color: var(--input-color);
+    color: var(--white);
     border: none;
     border-radius: 5px;
 }
@@ -109,7 +112,7 @@ input, .select select, .textarea  {
     align-items: baseline;
 }
 .card {
-background-color: beige;
+background-color: var(--card);
 }
 .card-header-title {
 font-weight: 600;
@@ -136,6 +139,7 @@ box-shadow: none;
         flex-direction: column;
         align-items: center;
     }
+
 }
 
     
@@ -155,7 +159,7 @@ box-shadow: none;
 .track{
     display: flex;
     width:calc(250px * 18);
-    animation:slide 40s linear infinite ;
+    animation:scroll 40s linear infinite ;
 
 }
 
@@ -221,7 +225,7 @@ box-shadow: none;
     }
 }
 
-@keyframes slide{
+@keyframes scroll{
   0%{
     transform: translate3d(0, 0, 0);
   }
@@ -230,3 +234,69 @@ box-shadow: none;
   }
 }
 
+
+/*styling for modal*/
+
+.modal-content{
+    text-align: center;
+}
+
+#modal-text{
+    text-align: center;
+    background-color:rgb(184, 74, 74);
+    padding: 10px 0;
+    color:white;
+
+}
+
+
+
+/*collasing display*/
+
+
+/*overlay*/
+#overlay {
+  position: fixed; 
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer;
+  transition: 3s;
+  transition-property: all;
+  transition-duration: 0.5s;
+}
+
+#text{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color:rgb(184, 74, 74);
+  transform: translate(-55%,-45%);
+  -ms-transform: translate(-50%,-50%);
+}
+
+#genreanddrink{
+    font-size: 24px;
+}
+
+.modal-content{
+    text-align: center;
+    font-size: 24px;
+    text-transform: capitalize;
+}
+
+.black{
+    background-color: black;
+    width: 100%;
+}
+
+#main{
+    visibility:hidden;
+}
