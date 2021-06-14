@@ -204,15 +204,9 @@ $(document).ready(function(){
                     ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
                 }
                
-                // ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
-                //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
 
             } 
-            
-            // savDrinkIngr = ingredientArray;
-            // console.log(savDrinkIngr);
-
         });
         
     }
@@ -225,7 +219,7 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-           modalText.text("Please select a movie genre and drink type.");
+            modalText.text("Please select a movie genre and drink type.");
             
             return;
         }
@@ -241,6 +235,7 @@ $(document).ready(function(){
         cocktailType = cocktailInput.children("option:selected").val();
 
         getMovieByGenre();
+        removeIngredients(cocktailIngredientsDisplay);
         getCocktail();
 
         document.getElementById("save-favorite-button").style.display = "block";
@@ -312,8 +307,6 @@ $(document).ready(function(){
     Icon.on('click', function(){
         document.getElementById("overlay").style.display = "none";
         document.getElementById("main").style.visibility = "visible";
-
-
     })
 
 
