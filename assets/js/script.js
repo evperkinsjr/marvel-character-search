@@ -25,11 +25,17 @@ $(document).ready(function(){
     var randomDetailsArray;
     var cocktailIndex = 0;
     var cocktailArray;
-    var saveFavButton = $('#save-favorite-button');
-    var movieDrinkCards = $('#cards');
-   /*  var introCard = $('intro-card'); */
-
     var ingredientArray = [];
+    var saveFavButton = $("#save-favorite-button");
+    var movieDrinkCards = $("#cards");
+    var movieId ;
+    var drinkId;
+    var savMovieTitle;
+    var savMovieDesc;
+    var savMovieRelDate;
+    var favComboList = []
+    var Main = $('#main')
+    var Icon = $('#overlay');
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
@@ -50,21 +56,12 @@ $(document).ready(function(){
 
                 movieResponse = data;
                 console.log(movieResponse);
-                // Sets movieId to be used in Local Storage Function 
-                movieId = data.results[0].id;
-                savMovieTitle = data.results[0].title
-                savMovieDesc = data.results[0].overview
-                savMovieRelDate = data.results[0].release_date
 
                 console.log(data.results[0].id) //movie Id
                 console.log(data.results[0].title) //movie title, there is also an original_title
                 console.log(data.results[0].overview)  //movie summary
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
-
-                // var title = data.results[0].title;
-                // var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
-                // console.log(titleCleaned);
 
                 displayMovieDetails(movieResponse,movieIndex);
             })
@@ -77,6 +74,12 @@ $(document).ready(function(){
         movieImageDisplay.attr('src',"https://image.tmdb.org/t/p/w185" + data.results[index].poster_path);
         movieReleaseDateDisplay.text(moment(data.results[index].release_date).format("MMMM Do, YYYY"));
         movieRatingDisplay.text(data.results[index].vote_average);
+
+        // Sets movieId to be used in Local Storage Function 
+        movieId = data.results[index].id;
+        savMovieTitle = data.results[index].title
+        savMovieDesc = data.results[index].overview
+        savMovieRelDate = data.results[index].release_date
     }
 
     
@@ -94,24 +97,17 @@ $(document).ready(function(){
             movieIndex=19;
             //Create and append modal message for display - customize depending on where we are calling the modal from
             modalAlert.addClass('is-active');
+            modalText.text("No more movie suggestions in this genre, please select another genre.")
         
         }
     })
-        
-
 
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
     })
 
-
-
-
-
-
     //Search cocktail API
-
     function getCocktail() {
         var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
 
@@ -121,8 +117,9 @@ $(document).ready(function(){
                     console.log(response);
                     return response.json();
                 } else {
-                        //Create and append modal message for display - customize depending on where we are calling the modal from
-                        modalAlert.addClass('is-active');
+                    //Create and append modal message for display - customize depending on where we are calling the modal from
+                    modalAlert.addClass('is-active');
+                    modalText.text("API issue, please try again later.")
                 }
             })
             .then(function(data) {
@@ -134,7 +131,6 @@ $(document).ready(function(){
     }
 
     function getRandomDrink(data) {
-
         // generate random number from data array
         var randomNum = [Math.floor(Math.random() * data.drinks.length)];
 
@@ -159,8 +155,8 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    var secondModalAlert = $('second-modal-alert')
-                    secondModalAlert.addClass('is-active');
+                    modalAlert.addClass('is-active');
+                    modalText.text("API issue, please try again later.")
                 
                 }
         })
@@ -218,7 +214,6 @@ $(document).ready(function(){
         });
         
     }
-    //variable for modal text
         
 
     //Click event to initialize movie/cocktail search
@@ -246,8 +241,6 @@ $(document).ready(function(){
         getMovieByGenre();
         getCocktail();
 
-        /* document.getElementById("intro-card").style.display = "none"; */
-
         document.getElementById("save-favorite-button").style.display = "block";
 
         document.getElementById("cards").style.display = "flex";
@@ -269,22 +262,13 @@ $(document).ready(function(){
 
 
 
-// Saving To Local Storage
-    var saveButton = document.querySelector(".save-button");
-    var movieId;
-    var drinkId;
-    var savMovieTitle;
-    var savMovieTitle;
-    var savMovieDesc;
-    var savMovieRelDate;
-    var favComboList = []
-        
+    // Saving To Local Storage  
     // Function to save movieId AND drinkId
     function saveCombo() {
-    console.log(movieId);
-    console.log(drinkId);
+        console.log(movieId);
+        console.log(drinkId);
 
-    var favCombo = {
+        var favCombo = {
             movieTitle: savMovieTitle,
             movieDesc: savMovieDesc,
             movieRelDate: savMovieRelDate,
@@ -292,63 +276,62 @@ $(document).ready(function(){
             drinkInstr: savDrinkInstr,
             drinkIngr: savDrinkIngr,
         } 
-    favComboList.push(favCombo);
-    localStorage.setItem("favComboList", JSON.stringify(favComboList));
-    }
-    
-    // Function to get saved combos from local storage
-    function initSavedCombo() {
-    var storedCombo = localStorage.getItem('favComboList');
-    if (storedCombo) {
-        favComboList = JSON.parse(storedCombo);
-    }
+        favComboList.push(favCombo);
+        localStorage.setItem("favComboList", JSON.stringify(favComboList));
+
+        renderSavedCombos();
     }
 
-    $(document).on("click", ".save-button", function(event){
+     $(document).on("click", ".save-button", function(event){
         event.preventDefault();
         saveCombo();
      });
 
+    // Function to get saved combos from local storage
+    function initSavedCombo() {
+        var storedCombo = localStorage.getItem('favComboList');
+        if (storedCombo) {
+            favComboList = JSON.parse(storedCombo);
+        }
+    }
 
-initSavedCombo();
+    initSavedCombo();
 
 
-//welcome overlay
-var Main = $('#main')
-var Icon = $('#overlay');
-Icon.on('click', function(){
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("main").style.visibility = "visible";
+    // welcome overlay
+    Icon.on('click', function(){
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("main").style.visibility = "visible";
 
 
-})
+    })
 
-    var movieList = document.getElementById("movie-list"); 
 
     // Function to Display saved combos to Favorites Page
     function renderSavedCombos () {
-    
+
         for (var i = 0; i < favComboList.length; i++) {
         var savedComboOption = JSON.parse(localStorage.getItem("favComboList"));
 
-        // var listItem = document.createElement('p');
-        // listItem.textContent = savedComboOption[i].movieTitle;
-        // console.log(listItem);
-
-        var movTitle = savedComboOption[i].movieTitle;
-        var relDate = savedComboOption[i].movieRelDate;
-        var desc = savedComboOption[i].movieDesc;
-        var driTitle = savedComboOption[i].drinkTitle;
-        var driInstr = savedComboOption[i].drinkInstr;
+        var movTitle = $('<h2>').text(savedComboOption[i].movieTitle);
+        var relDate = $('<h2>').text(savedComboOption[i].movieRelDate);
+        var descr = $('<p>').text(savedComboOption[i].movieDesc);
+        var driTitle = $('<h2>').text(savedComboOption[i].drinkTitle);
+        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr)
+        var driInstr = $('<p>').text(savedComboOption[i].drinkInstr);
+        var breakSpace = $('<br>');
 
         console.log(movTitle);
         console.log(relDate);
-        console.log(desc);
+        console.log(descr);
         console.log(driTitle);
         console.log(driInstr);
-        
 
-        $(".movie-list").append();
+        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        
+        $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
+        $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
     }   
 
@@ -356,3 +339,4 @@ Icon.on('click', function(){
     renderSavedCombos();
 
 })
+
