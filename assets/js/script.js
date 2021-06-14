@@ -276,34 +276,34 @@ $(document).ready(function(){
             drinkInstr: savDrinkInstr,
             drinkIngr: savDrinkIngr,
         } 
+
         favComboList.push(favCombo);
         localStorage.setItem("favComboList", JSON.stringify(favComboList));
-
         renderSavedCombos();
     }
 
-     $(document).on("click", ".save-button", function(event){
+    // On click function to save favorites button
+    $(document).on("click", ".save-button", function(event){
         event.preventDefault();
         saveCombo();
-     });
 
-    // Function to get saved combos from local storage
+        modalAlert.addClass('is-active');
+        modalText.text("Your selection has been added to favorites.")    
+    });
+
+    // Function to save local storage on refresh and allowing to continue adding more favorites with overiding previous
     function initSavedCombo() {
         var storedCombo = localStorage.getItem('favComboList');
         if (storedCombo) {
             favComboList = JSON.parse(storedCombo);
         }
     }
-
     initSavedCombo();
 
-
-    // welcome overlay
+    // Welcome Overlay
     Icon.on('click', function(){
         document.getElementById("overlay").style.display = "none";
         document.getElementById("main").style.visibility = "visible";
-
-
     })
 
 
@@ -330,13 +330,18 @@ $(document).ready(function(){
         movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
         driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
         
-        $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
+        $("#movie-list").append(movTitle, descr, breakSpace);  
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
-    }   
-
-    initSavedCombo();
+    }  
     renderSavedCombos();
+
+    // Function to hide overlay on clicking HOME button from Favorites Page
+    $("#home-btn").click(function(){
+        window.location.href = "./index.html";
+        document.getElementById("overlay").style.display = "hidden";
+    })
+    
 
 })
 
