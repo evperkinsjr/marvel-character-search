@@ -25,11 +25,17 @@ $(document).ready(function(){
     var randomDetailsArray;
     var cocktailIndex = 0;
     var cocktailArray;
-    var saveFavButton = $('#save-favorite-button');
-    var movieDrinkCards = $('#cards');
-   /*  var introCard = $('intro-card'); */
-
     var ingredientArray = [];
+    var saveFavButton = $("#save-favorite-button");
+    var movieDrinkCards = $("#cards");
+    var movieId ;
+    var drinkId;
+    var savMovieTitle;
+    var savMovieDesc;
+    var savMovieRelDate;
+    var favComboList = []
+    var Main = $('#main')
+    var Icon = $('#overlay');
 
     //Search the Movie DB API by genre
     function getMovieByGenre() {
@@ -56,10 +62,6 @@ $(document).ready(function(){
                 console.log(data.results[0].overview)  //movie summary
                 console.log(data.results[0].poster_path) //https://image.tmbd.org/t/p/w185 + poster_path gives movie poster image
                 console.log(data.results[0].release_date) //release date
-
-                // var title = data.results[0].title;
-                // var titleCleaned = title.replace(/\s/g,'+');  //we could fetch from the OMDB API to get rotten tomatoes using titleCleaned
-                // console.log(titleCleaned);
 
                 displayMovieDetails(movieResponse,movieIndex);
             })
@@ -95,24 +97,17 @@ $(document).ready(function(){
             movieIndex=19;
             //Create and append modal message for display - customize depending on where we are calling the modal from
             modalAlert.addClass('is-active');
+            modalText.text("No more movie suggestions in this genre, please select another genre.")
         
         }
     })
-        
-
 
     //Click event on the 'x' in the modal to close the modal
     modalAlert.on('click', '.modal-close', function(){
         modalAlert.removeClass('is-active');
     })
 
-
-
-
-
-
     //Search cocktail API
-
     function getCocktail() {
         var drinkRequestUrl = "https://www.thecocktaildb.com/api/json/v1/1/filter.php?" + cocktailType;
 
@@ -122,8 +117,9 @@ $(document).ready(function(){
                     console.log(response);
                     return response.json();
                 } else {
-                        //Create and append modal message for display - customize depending on where we are calling the modal from
-                        modalAlert.addClass('is-active');
+                    //Create and append modal message for display - customize depending on where we are calling the modal from
+                    modalAlert.addClass('is-active');
+                    modalText.text("API issue, please try again later.")
                 }
             })
             .then(function(data) {
@@ -135,7 +131,6 @@ $(document).ready(function(){
     }
 
     function getRandomDrink(data) {
-
         // generate random number from data array
         var randomNum = [Math.floor(Math.random() * data.drinks.length)];
 
@@ -160,8 +155,8 @@ $(document).ready(function(){
                 return response.json();
             } else {
                     //Create and append modal message for display - customize depending on where we are calling the modal from
-                    var secondModalAlert = $('second-modal-alert')
-                    secondModalAlert.addClass('is-active');
+                    modalAlert.addClass('is-active');
+                    modalText.text("API issue, please try again later.")
                 
                 }
         })
@@ -219,7 +214,6 @@ $(document).ready(function(){
         });
         
     }
-    //variable for modal text
         
 
     //Click event to initialize movie/cocktail search
@@ -247,8 +241,6 @@ $(document).ready(function(){
         getMovieByGenre();
         getCocktail();
 
-        /* document.getElementById("intro-card").style.display = "none"; */
-
         document.getElementById("save-favorite-button").style.display = "block";
 
         document.getElementById("cards").style.display = "flex";
@@ -270,21 +262,13 @@ $(document).ready(function(){
 
 
 
-// Saving To Local Storage
-
-    var movieId ;
-    var drinkId;
-    var savMovieTitle;
-    var savMovieDesc;
-    var savMovieRelDate;
-    var favComboList = []
-        
+    // Saving To Local Storage  
     // Function to save movieId AND drinkId
     function saveCombo() {
-    console.log(movieId);
-    console.log(drinkId);
+        console.log(movieId);
+        console.log(drinkId);
 
-    var favCombo = {
+        var favCombo = {
             movieTitle: savMovieTitle,
             movieDesc: savMovieDesc,
             movieRelDate: savMovieRelDate,
@@ -292,10 +276,10 @@ $(document).ready(function(){
             drinkInstr: savDrinkInstr,
             drinkIngr: savDrinkIngr,
         } 
-    favComboList.push(favCombo);
-    localStorage.setItem("favComboList", JSON.stringify(favComboList));
+        favComboList.push(favCombo);
+        localStorage.setItem("favComboList", JSON.stringify(favComboList));
 
-    renderSavedCombos();
+        renderSavedCombos();
     }
 
      $(document).on("click", ".save-button", function(event){
@@ -305,27 +289,22 @@ $(document).ready(function(){
 
     // Function to get saved combos from local storage
     function initSavedCombo() {
-    var storedCombo = localStorage.getItem('favComboList');
-    if (storedCombo) {
-        favComboList = JSON.parse(storedCombo);
+        var storedCombo = localStorage.getItem('favComboList');
+        if (storedCombo) {
+            favComboList = JSON.parse(storedCombo);
+        }
     }
-    }
 
-   
-
-
-initSavedCombo();
+    initSavedCombo();
 
 
-//welcome overlay
-var Main = $('#main')
-var Icon = $('#overlay');
-Icon.on('click', function(){
-    document.getElementById("overlay").style.display = "none";
-    document.getElementById("main").style.visibility = "visible";
+    // welcome overlay
+    Icon.on('click', function(){
+        document.getElementById("overlay").style.display = "none";
+        document.getElementById("main").style.visibility = "visible";
 
 
-})
+    })
 
 
     // Function to Display saved combos to Favorites Page
@@ -333,10 +312,6 @@ Icon.on('click', function(){
 
         for (var i = 0; i < favComboList.length; i++) {
         var savedComboOption = JSON.parse(localStorage.getItem("favComboList"));
-
-        // var listItem = document.createElement('h1');
-        // listItem.textContent = savedComboOption[i].movieTitle;
-        // console.log(listItem);
 
         var movTitle = $('<h2>').text(savedComboOption[i].movieTitle);
         var relDate = $('<h2>').text(savedComboOption[i].movieRelDate);
@@ -357,8 +332,6 @@ Icon.on('click', function(){
         
         $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
-
-        
         }   
     }   
 
@@ -366,3 +339,4 @@ Icon.on('click', function(){
     renderSavedCombos();
 
 })
+
