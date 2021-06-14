@@ -15,81 +15,80 @@
 
      <link rel="stylesheet" href="./assets/css/style.css">
 </head>
-<body>
-    <main>
-    <!--Header/Navbar-->
-        <nav class="navbar is-centered is-flex is-justify-content-space-between">
-            <!--Logo-->
-            <div class="navbar-brand">
-                <a class="navbar-item">
-                    <img src="./assets/images/video-player.png">
-                    <img src="./assets/images/wine.png">
-                </a>
-            </div>
-            <!--Title-->
-            <div class="navbar-item header-title">
-                <h1 class="main-title">Favorites Page</h1>
-            </div>
-            <!--Home Page Button-->
-                <div class="navbar-item home-button">
-                <button class="button is-dark is-focused" onclick="window.location.href = './index.html';">
-                    <span class="icon is-medium">
-                        <i class="fas fa-home"></i>
-                    </span>
-                    <span>Home</span>
-                </button>
-            </div>
-        </nav>
-
-    <!--movie container-->
-
-    <div class="columns">
-        <!--Card for Movie-->
-        <div class="column card">
-            <!--Movie Title-->
-            <div class="">
-                <p class="card-header-title title">
-                    <span class="icon-text">
-                        <span class="icon">
-                          <i class="fas fa-film"></i>
-                        </span>
-                        <span id="movie-title">My Favorite Movies</span>
-                    </span>
-                </p>
-                <div id="movie-list">
-
+    <body>
+        <main>   
+            <!--Header/Navbar-->
+            <nav class="navbar is-centered is-flex is-justify-content-space-between">
+                <!--Logo-->
+                <div class="navbar-brand">
+                    <a class="navbar-item">
+                        <img src="./assets/images/video-player.png">
+                        <img src="./assets/images/wine.png">
+                    </a>
                 </div>
-            </div>
-        </div>
-        <div class="column card">
-            <!--Movie Title-->
-            <div class="">
-                <p class="card-header-title title">
-                    <span class="icon-text">
-                        <span class="icon">
-                          <i class="fas fa-film"></i>
-                        </span>
-                        <span id="cocktail-title">My Favorite Cocktails</span>
-                    </span>
-                </p>
-                <div id="cocktail-list">
-
+                <!--Title-->
+                <div class="navbar-item header-title">
+                    <h1 class="main-title">Favorites Page</h1>
                 </div>
-            </div>
-        </div>
-    </div>    
+                <!--Home Page Button-->
+                    <div class="navbar-item home-button">
+                    <button class="button is-dark is-focused" onclick="window.location.href = './index.html';">
+                        <span class="icon is-medium">
+                            <i class="fas fa-home"></i>
+                        </span>
+                        <span>Home</span>
+                    </button>
+                </div>
+            </nav>
 
-</main>
+            <!--Display container-->
+            <div class="columns">
+                <!--Card for Movie-->
+                <div class="column card">
+                    <!--Movie Title-->
+                    <div>
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                <i class="fas fa-film"></i>
+                                </span>
+                                <span id="movie-title">My Favorite Movies</span>
+                            </span>
+                        </p>
+                        <div id="movie-list">
 
-    
+                        </div>
+                    </div>
+                </div>
+                <!--Card for Cocktail-->
+                <div class="column card">
+                    <!--Cocktail Title-->
+                    <div>
+                        <p class="card-header-title title">
+                            <span class="icon-text">
+                                <span class="icon">
+                                <i class="fas fa-film"></i>
+                                </span>
+                                <span id="cocktail-title">My Favorite Cocktails</span>
+                            </span>
+                        </p>
+                        <div id="cocktail-list">
 
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        </main>
+
+
+        <!--link to jquery library-->
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous">
+        </script>
+        <!--Linkt to Javascript-->
+        <script src="assets/js/script.js" defer></script>
     </body>
-    <!--link to jquery library-->
-    <script
-    src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-    crossorigin="anonymous">
-    </script>
-    <!--Linkt to Javascript-->
-    <script src="assets/js/script.js" defer></script>
+
 </html>
