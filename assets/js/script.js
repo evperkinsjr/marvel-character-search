@@ -26,6 +26,9 @@ $(document).ready(function(){
     var cocktailIndex = 0;
     var cocktailArray;
     var saveFavButton = $('#save-favorite-button');
+    var movieDrinkCards = $('#cards');
+   /*  var introCard = $('intro-card'); */
+
     var ingredientArray = [];
 
     //Search the Movie DB API by genre
@@ -244,7 +247,11 @@ $(document).ready(function(){
         getMovieByGenre();
         getCocktail();
 
-        document.getElementById("save-favorite-button").style.visibility = "visible"
+        /* document.getElementById("intro-card").style.display = "none"; */
+
+        document.getElementById("save-favorite-button").style.display = "block";
+
+        document.getElementById("cards").style.display = "flex";
     })
 
      // Click event handler for 'Next' cocktail button
