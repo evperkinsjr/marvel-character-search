@@ -204,12 +204,14 @@ $(document).ready(function(){
                     ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
                 }
                
-                ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
+                // ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
                 //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
-            }  
-            savDrinkIngr = ingredientArray;
-            console.log(savDrinkIngr);
+
+            } 
+            
+            // savDrinkIngr = ingredientArray;
+            // console.log(savDrinkIngr);
 
         });
         
@@ -284,6 +286,14 @@ $(document).ready(function(){
 
      $(document).on("click", ".save-button", function(event){
         event.preventDefault();
+
+        $('#cocktail-ingredients li').each(function(index){
+            ingredientArray.push($(this).text());
+            console.log(ingredientArray);
+        })
+        savDrinkIngr = ingredientArray;
+        console.log(savDrinkIngr);
+
         saveCombo();
      });
 
@@ -330,7 +340,7 @@ $(document).ready(function(){
         movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
         driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
         
-        $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
+        $("#movie-list").append(movTitle, descr, breakSpace); 
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
     }   
