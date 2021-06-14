@@ -204,13 +204,9 @@ $(document).ready(function(){
                     ingredientItem.innerHTML = data.drinks[0][`strIngredient${i}`];
                 }
                
-                ingredientArray.push(data.drinks[0][`strMeasure${i}`] + ": " + data.drinks[0][`strIngredient${i}`]);
-                //console.log(savDrinkIngr)
                 cocktailIngredientsDisplay.append(ingredientItem);
-            }  
-            savDrinkIngr = ingredientArray;
-            console.log(savDrinkIngr);
 
+            } 
         });
         
     }
@@ -223,7 +219,7 @@ $(document).ready(function(){
 
         if ((genreInput.children("option:selected").val() === "") || (cocktailInput.children("option:selected").val() === "")) {
             modalAlert.addClass('is-active');
-           modalText.text("Please select a movie genre and drink type.");
+            modalText.text("Please select a movie genre and drink type.");
             
             return;
         }
@@ -239,6 +235,7 @@ $(document).ready(function(){
         cocktailType = cocktailInput.children("option:selected").val();
 
         getMovieByGenre();
+        removeIngredients(cocktailIngredientsDisplay);
         getCocktail();
 
         document.getElementById("save-favorite-button").style.display = "block";
@@ -284,6 +281,14 @@ $(document).ready(function(){
 
      $(document).on("click", ".save-button", function(event){
         event.preventDefault();
+
+        $('#cocktail-ingredients li').each(function(index){
+            ingredientArray.push($(this).text());
+            console.log(ingredientArray);
+        })
+        savDrinkIngr = ingredientArray;
+        console.log(savDrinkIngr);
+
         saveCombo();
      });
 
@@ -302,8 +307,6 @@ $(document).ready(function(){
     Icon.on('click', function(){
         document.getElementById("overlay").style.display = "none";
         document.getElementById("main").style.visibility = "visible";
-
-
     })
 
 
@@ -316,8 +319,9 @@ $(document).ready(function(){
         var movTitle = $('<h2>').text(savedComboOption[i].movieTitle);
         var relDate = $('<h2>').text(savedComboOption[i].movieRelDate);
         var descr = $('<p>').text(savedComboOption[i].movieDesc);
+        var movBreakSpace = $('<br>');
         var driTitle = $('<h2>').text(savedComboOption[i].drinkTitle);
-        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr)
+        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr);
         var driInstr = $('<p>').text(savedComboOption[i].drinkInstr);
         var breakSpace = $('<br>');
 
@@ -327,10 +331,10 @@ $(document).ready(function(){
         console.log(driTitle);
         console.log(driInstr);
 
-        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
-        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold");
+        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold");
         
-        $("#movie-list").append(movTitle, descr, breakSpace, breakSpace);  
+        $("#movie-list").append(movTitle, descr, movBreakSpace); 
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
     }   
