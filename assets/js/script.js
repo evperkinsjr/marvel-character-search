@@ -319,8 +319,9 @@ $(document).ready(function(){
         var movTitle = $('<h2>').text(savedComboOption[i].movieTitle);
         var relDate = $('<h2>').text(savedComboOption[i].movieRelDate);
         var descr = $('<p>').text(savedComboOption[i].movieDesc);
+        var movBreakSpace = $('<br>');
         var driTitle = $('<h2>').text(savedComboOption[i].drinkTitle);
-        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr)
+        var driIngr = $('<p>').text(savedComboOption[i].drinkIngr);
         var driInstr = $('<p>').text(savedComboOption[i].drinkInstr);
         var breakSpace = $('<br>');
 
@@ -330,10 +331,10 @@ $(document).ready(function(){
         console.log(driTitle);
         console.log(driInstr);
 
-        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
-        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold")
+        movTitle.addClass("subtitle-negative-margin has-text-weight-semibold");
+        driTitle.addClass("subtitle-negative-margin has-text-weight-semibold");
         
-        $("#movie-list").append(movTitle, descr, breakSpace); 
+        $("#movie-list").append(movTitle, descr, movBreakSpace); 
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
     }   
