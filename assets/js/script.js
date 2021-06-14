@@ -342,12 +342,5 @@ $(document).ready(function(){
     }  
     renderSavedCombos();
 
-    // Function to hide overlay on clicking HOME button from Favorites Page
-    $("#home-btn").click(function(){
-        window.location.href = "./index.html";
-        document.getElementById("overlay").style.display = "hidden";
-    })
-    
-
 })
 
