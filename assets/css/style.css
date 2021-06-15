@@ -5,9 +5,9 @@
     --input-color: #363636;
     --white: white;
     --black: black;
-    --highlight: yellow;
+    --highlight: rgb(255, 217, 0);
     --card: beige;
-    --pop: rgb(184, 74, 74);
+    --pop: #9f2943;
 }
 
 /* Universal */
@@ -80,11 +80,13 @@ body, html {
     color: var(--pop);
     font-size: 4.5vw;
 }
+.navbar-brand {
+    padding-left: 5%;
+}
 .navbar-item img {
     min-width: 1em;
-    min-height: 4em;
+    min-height: 100px;
     object-fit: cover;
-    background-color: var(--body-color);
 }
 .main-title {
     font-family: 'Limelight', cursive;

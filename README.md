@@ -14,9 +14,9 @@ Link to live application: [Movie-Drink Matchmaker](https://evperkinsjr.github.io
 
 
 ## Mock-Up
-The following image shows the web application's appearance and functionality:
+The following animation shows the web application's appearance and functionality:
 
-![Movie-Drink Matchmaker](#)
+![Movie-Drink Matchmaker](assets/images/movie-drink-matchmaker-gif.gif)
 
 <p>&nbsp</p>
 
