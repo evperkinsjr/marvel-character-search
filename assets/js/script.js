@@ -37,6 +37,14 @@ $(document).ready(function(){
     var Main = $('#main')
     var Icon = $('#overlay');
 
+    //Hide overlay if previously seen
+    $(document).ready(function() {
+        if(sessionStorage.getItem('hideOverlay') == 'true'){
+            $(Icon).css('display', 'none');
+            $(Main).css('visibility', 'visible');
+        }
+    });
+
     //Search the Movie DB API by genre
     function getMovieByGenre() {
         var requestURL = "https://api.themoviedb.org/3/discover/movie?api_key=" + movieAPIKey + 
@@ -309,6 +317,7 @@ $(document).ready(function(){
     Icon.on('click', function(){
         document.getElementById("overlay").style.display = "none";
         document.getElementById("main").style.visibility = "visible";
+        sessionStorage.setItem('hideOverlay', 'true');
     })
 
 
