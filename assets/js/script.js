@@ -273,13 +273,14 @@ $(document).ready(function(){
             drinkInstr: savDrinkInstr,
             drinkIngr: savDrinkIngr,
         } 
+
         favComboList.push(favCombo);
         localStorage.setItem("favComboList", JSON.stringify(favComboList));
-
         renderSavedCombos();
     }
 
-     $(document).on("click", ".save-button", function(event){
+    // On click function to save favorites button
+    $(document).on("click", ".save-button", function(event){
         event.preventDefault();
 
         $('#cocktail-ingredients li').each(function(index){
@@ -290,20 +291,21 @@ $(document).ready(function(){
         console.log(savDrinkIngr);
 
         saveCombo();
-     });
 
-    // Function to get saved combos from local storage
+        modalAlert.addClass('is-active');
+        modalText.text("Your selection has been added to favorites.")    
+    });
+
+    // Function to save local storage on refresh and allowing to continue adding more favorites with overiding previous
     function initSavedCombo() {
         var storedCombo = localStorage.getItem('favComboList');
         if (storedCombo) {
             favComboList = JSON.parse(storedCombo);
         }
     }
-
     initSavedCombo();
 
-
-    // welcome overlay
+    // Welcome Overlay
     Icon.on('click', function(){
         document.getElementById("overlay").style.display = "none";
         document.getElementById("main").style.visibility = "visible";
@@ -337,9 +339,7 @@ $(document).ready(function(){
         $("#movie-list").append(movTitle, descr, movBreakSpace); 
         $("#cocktail-list").append(driTitle, driIngr, driInstr, breakSpace);  
         }   
-    }   
-
-    initSavedCombo();
+    }  
     renderSavedCombos();
 
 })
