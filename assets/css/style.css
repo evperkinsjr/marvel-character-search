@@ -212,20 +212,12 @@ box-shadow: none;
         top: 100px;
         height: 650px;
     }
+    .header-title {
+        font-size:6.5vw;
+    }
 
 }
 
-/* @media screen and (max-width: 750px) {
-    #intro-card {
-        padding-top: 20%;
-        overflow-y: scroll;
-        display: block;
-        position:relative;
-        top: 100px;
-
-        height: 600px; 
-    } 
-} */
 
     
 
