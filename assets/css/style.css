@@ -193,7 +193,7 @@ box-shadow: none;
     border-radius: 10px;
 }
 
-/*Changes to layout when screen size has min-wdith of 1024px*/
+/*Changes to layout when screen size has max-wdith of 1024px*/
 @media screen and (max-width: 1024px) {
     .navbar {
         flex-direction: column;
@@ -203,6 +203,12 @@ box-shadow: none;
         padding-top: 30%;
     }
 
+}
+
+@media screen and (max-width: 750px) {
+    #intro-card {
+        padding-top: 50%;
+    }
 }
 
     
