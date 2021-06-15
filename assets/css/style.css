@@ -205,7 +205,7 @@ box-shadow: none;
         align-items: center;
     }
     #intro-card {
-        padding-top: 20%;
+        padding-top: 18%;
         overflow-y: scroll;
         display: block;
         position: relative;
@@ -215,7 +215,19 @@ box-shadow: none;
     .header-title {
         font-size:6.5vw;
     }
+}
 
+/*Changes to layout when screen size has max-width of 740px*/
+@media screen and (max-width: 740px) {
+    #intro-card {
+        padding-top: 25%;
+    }
+
+    .icon-text {
+        display:flex;
+        flex-direction: column;
+        align-items:center;
+    }
 }
 
 
