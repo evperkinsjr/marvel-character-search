@@ -1,4 +1,4 @@
-# Movie Drink Roulette
+# Movie-Drink Matchmaker
 
 ## Description
 We created a movie night application that provides the user with a movie and drink recommendation based on their selections. Here's how this application works:
@@ -10,19 +10,19 @@ We created a movie night application that provides the user with a movie and dri
 5. When the user finds a pair they like, they can click the "Save to Favorites" button so save them to localStorage.
 6. Saved combinations can be found on the "Favorites" page.
 
-Link to live application: [Movie Drink Roulette](https://evperkinsjr.github.io/movie-drink-roulette/)
+Link to live application: [Movie-Drink Matchmaker](https://evperkinsjr.github.io/movie-drink-matchmaker/)
 
 
 ## Mock-Up
 The following image shows the web application's appearance and functionality:
 
-![Movie Drink Roulette](#)
+![Movie-Drink Matchmaker](#)
 
 <p>&nbsp</p>
 
 ## Contributors
 - [Joshua Gonzalez](https://github.com/jalgonz)
-- [Aldaine Knight](https://github.com/luvkil)
+- [Steven Knight](https://github.com/luvkil)
 - [Elizabeth Mangano](https://github.com/emangano2816)
 - [Omar Nava](https://github.com/omar-94)
 - [Enrico Perkins](https://github.com/evperkinsjr)
