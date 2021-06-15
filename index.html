@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <title>Movie & Drink Roulette</title>
+        <title>Movie-Drink Matchmaker</title>
         <!--Link to Bulma(CSS)-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css"/>
         <!--Font Awesome-->
@@ -22,7 +22,7 @@
         <div id="overlay">
 
             <!-- intro instruction card -->
-            <section id="intro-card" class="column card">
+            <section id="intro-card" class="column card is-flex is-flex-direction-column">
                 <p class="card-header-title title">
                     <span class="icon-text" id="intro-header">
                         <span class="icon">
@@ -36,18 +36,20 @@
                 </p>
                 <p>How to play:</p>
                 <p>&nbsp;</p>
-                <ul id="instructions">
-                    <li>Select a GENRE and a DRINK TYPE using the drop-down menus.</li>
-                    <li>Hit the SUBMIT button</li>
-                    <li>You'll get a movie and drink combination.</li>
-                    <li>If you don't like your movie recommendation, hit NEW MOVIE to get a new one in your selected genre.</li>
-                    <li>If you don't like your drink recommendation, hit NEW COCKTAIL for a different drink of the same type.</li>
-                    <li>You could also change your selections and run the search again</li>
-                    <li>When you find a pair you like, click the SAVE TO FAVORITES button so you can refer back to them later.</li>
-                </ul>
+                <div class="is-align-self-center">
+                    <ul id="instructions">
+                        <li>Select a GENRE and a DRINK TYPE using the drop-down menus.</li>
+                        <li>Hit the SUBMIT button.</li>
+                        <li>You'll get a movie and drink combination.</li>
+                        <li>If you don't like your movie recommendation, hit NEW MOVIE to get a new one in your selected genre.</li>
+                        <li>If you don't like your drink recommendation, hit NEW COCKTAIL for a different drink of the same type.</li>
+                        <li>You could also change your selections and run the search again.</li>
+                        <li>When you find a pair you like, click the SAVE TO FAVORITES button so you can refer back to them later.</li>
+                    </ul>
+                </div>
                 <p>&nbsp;</p>
                 <p>Enjoy responsibly.</p>
-                <button class="button">Start</button>
+                <button id="intro-start-btn" class="button is-align-self-center">Start</button>
             </section>
 
         </div>
@@ -65,7 +67,7 @@
             </div>
             <!--Title-->
             <div class="navbar-item header-title">
-                <h1 class="main-title">Movie & Drink Roulette</h1>
+                <h1 class="main-title">Movie-Drink Matchmaker</h1>
             </div>    
             <!--Favorites Page Button-->
             <div class="navbar-item favorites-button">

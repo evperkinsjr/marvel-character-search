@@ -48,6 +48,7 @@ body, html {
     text-align: center;
     margin: 10px 18%;
     padding-top: 8%;
+    width: auto;
 }
 
 #intro-header {
@@ -58,6 +59,10 @@ body, html {
     text-align: left;
     list-style-type: disc;
     margin-left: 10px;
+}
+
+#intro-start-btn {
+    width: 125px;
 }
 
 #main {
@@ -200,16 +205,31 @@ box-shadow: none;
         align-items: center;
     }
     #intro-card {
-        padding-top: 30%;
+        padding-top: 18%;
+        overflow-y: scroll;
+        display: block;
+        position: relative;
+        top: 100px;
+        height: 650px;
     }
-
+    .header-title {
+        font-size:6.5vw;
+    }
 }
 
-@media screen and (max-width: 750px) {
+/*Changes to layout when screen size has max-width of 740px*/
+@media screen and (max-width: 740px) {
     #intro-card {
-        padding-top: 50%;
+        padding-top: 25%;
+    }
+
+    .icon-text {
+        display:flex;
+        flex-direction: column;
+        align-items:center;
     }
 }
+
 
     
 
