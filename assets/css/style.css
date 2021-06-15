@@ -47,7 +47,7 @@ body, html {
 #intro-card {
     text-align: center;
     margin: 10px 18%;
-    padding-top: 8%;
+    padding-top: 150px;
     width: auto;
 }
 
@@ -87,6 +87,12 @@ body, html {
     min-width: 1em;
     min-height: 100px;
     object-fit: cover;
+}
+.home-button {
+    padding-right: 5%;
+}
+.favorites-button {
+    padding-right: 5%;
 }
 .main-title {
     font-family: 'Limelight', cursive;
@@ -207,7 +213,7 @@ box-shadow: none;
         align-items: center;
     }
     #intro-card {
-        padding-top: 18%;
+        padding-top: 225px;
         overflow-y: scroll;
         display: block;
         position: relative;
@@ -221,10 +227,6 @@ box-shadow: none;
 
 /*Changes to layout when screen size has max-width of 740px*/
 @media screen and (max-width: 740px) {
-    #intro-card {
-        padding-top: 25%;
-    }
-
     .icon-text {
         display:flex;
         flex-direction: column;
